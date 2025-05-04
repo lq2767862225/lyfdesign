@@ -19,6 +19,7 @@ import {
 import { logout } from "@/lib/api"
 import { useRouter } from "next/navigation"
 import { useSidebar } from "./sidebar-provider"
+import {Label} from "@/components/ui/label";
 
 interface MainSidebarProps {
   className?: string
@@ -211,12 +212,20 @@ export function MainSidebar({ className }: MainSidebarProps) {
           <div className="space-y-1 px-2">
             {navItems.map((item, i) => (
               <div key={i} className="mb-4">
-                <Link href={item.href}>
-                  <Button variant={pathname === item.href ? "secondary" : "ghost"} className="w-full justify-start">
-                    <item.icon className="mr-2 h-4 w-4" />
-                    {item.title}
-                  </Button>
-                </Link>
+                {(item.submenu && item.submenu.length > 0) ? (
+                    <Button variant={pathname.substring(0, item.href.length) === item.href ? "secondary" : "ghost"}
+                            className="w-full justify-start">
+                      <item.icon className="mr-2 h-4 w-4"/>
+                      {item.title}
+                    </Button>
+                ) : (
+                    <Link href={item.href}>
+                      <Button variant={pathname === item.href ? "secondary" : "ghost"} className="w-full justify-start">
+                        <item.icon className="mr-2 h-4 w-4"/>
+                        {item.title}
+                      </Button>
+                    </Link>
+                )}
                 {item.submenu && item.submenu.length > 0 && (
                   <div className="ml-4 mt-1 space-y-1 relative">
                     <div className="absolute left-1 top-0 bottom-0 w-px bg-border"></div>
