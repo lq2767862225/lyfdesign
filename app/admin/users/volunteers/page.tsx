@@ -58,7 +58,7 @@ export default function VolunteersManagementPage() {
     grade: "",
     email: "",
     phone: "",
-    creditScore: 100,
+    creditScore: 3,
     serviceHours: 0,
   })
   const [importData, setImportData] = useState("")
@@ -164,7 +164,7 @@ export default function VolunteersManagementPage() {
         grade: "",
         email: "",
         phone: "",
-        creditScore: 100,
+        creditScore: 3,
         serviceHours: 0,
       })
       setAddUserDialogOpen(false)
@@ -200,16 +200,19 @@ export default function VolunteersManagementPage() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      setImportFile(e.target.files[0])
+      const files = e.target.files
+      if (files) {
+        setImportFile(files[0])
 
-      // 读取文件内容预览
-      const reader = new FileReader()
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          setImportData(event.target.result as string)
+        // 读取文件内容预览
+        const reader = new FileReader()
+        reader.onload = (event) => {
+          if (event.target?.result) {
+            setImportData(event.target.result as string)
+          }
         }
+        reader.readAsText(files[0])
       }
-      reader.readAsText(e.target.files[0])
     }
   }
 
@@ -455,13 +458,6 @@ export default function VolunteersManagementPage() {
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <Mail className="mr-2 h-4 w-4 text-muted-foreground" />
-                        <span className="text-sm">邮箱</span>
-                      </div>
-                      <span className="text-sm font-medium">{selectedVolunteer.email}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
                         <Phone className="mr-2 h-4 w-4 text-muted-foreground" />
                         <span className="text-sm">电话</span>
                       </div>
@@ -596,17 +592,6 @@ export default function VolunteersManagementPage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="email">邮箱</Label>
-                  <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="请输入邮箱"
-                      value={newUser.email}
-                      onChange={handleInputChange}
-                  />
-                </div>
-                <div className="grid gap-2">
                   <Label htmlFor="phone">电话</Label>
                   <Input
                       id="phone"
@@ -616,19 +601,19 @@ export default function VolunteersManagementPage() {
                       onChange={handleInputChange}
                   />
                 </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
                   <Label htmlFor="creditScore">初始信誉分</Label>
                   <Input
                       id="creditScore"
                       name="creditScore"
                       type="number"
-                      placeholder="100"
+                      placeholder="3"
                       value={newUser.creditScore}
                       onChange={handleInputChange}
                   />
                 </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
                   <Label htmlFor="serviceHours">初始服务时长</Label>
                   <Input

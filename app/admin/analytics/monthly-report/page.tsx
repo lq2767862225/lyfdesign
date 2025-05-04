@@ -35,11 +35,9 @@ export default function MonthlyReportPage() {
       averageServiceHours: 3.0,
     },
     activityTypes: [
-      { type: "环保", count: 4, percentage: 33.3, value: 4 },
-      { type: "关爱", count: 3, percentage: 25.0, value: 3 },
-      { type: "教育", count: 2, percentage: 16.7, value: 2 },
-      { type: "科技", count: 2, percentage: 16.7, value: 2 },
-      { type: "健康", count: 1, percentage: 8.3, value: 1 },
+      { type: "校园活动", count: 4, percentage: 33.3, value: 4 },
+      { type: "环境保护", count: 3, percentage: 25.0, value: 3 },
+      { type: "关爱老人", count: 2, percentage: 16.7, value: 2 },
     ],
     departmentParticipation: [
       { department: "计算机学院", count: 45, percentage: 28.8 },
@@ -57,7 +55,7 @@ export default function MonthlyReportPage() {
   }
 
   // 饼图颜色
-  const COLORS = ["#4f46e5", "#0ea5e9", "#10b981", "#f59e0b", "#ef4444"]
+  const COLORS = ["#10b981", "#f59e0b", "#ef4444"]
 
   const handleExport = () => {
     // 模拟导出报表
@@ -87,11 +85,9 @@ export default function MonthlyReportPage() {
 
   // 配置图表颜色
   const chartConfig = {
-    环保: { color: "#4f46e5" },
-    关爱: { color: "#0ea5e9" },
-    教育: { color: "#10b981" },
-    科技: { color: "#f59e0b" },
-    健康: { color: "#ef4444" },
+    校园活动: { color: "#10b981" },
+    环境保护: { color: "#f59e0b" },
+    关怀老人: { color: "#ef4444" },
   }
 
   return (

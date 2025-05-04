@@ -68,23 +68,23 @@ export default function ActivityHistoryPage() {
             <TabsTrigger value="ongoing">进行中 ({ongoingActivities.length})</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="completed" className="mt-4">
-            {completedActivities.length > 0 ? (
-                <div className="space-y-4">
-                  {completedActivities.map((activity) => (
-                      <Card key={activity.id}>
-                        <CardHeader className="pb-2">
-                          <div className="flex justify-between items-start">
-                            <div>
-                              <CardTitle>{activity.title}</CardTitle>
-                              <CardDescription>{activity.type}类活动</CardDescription>
-                            </div>
-                            <Badge variant="outline">已完成</Badge>
-                          </div>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="space-y-4">
-                            <p className="text-sm">{activity.description}</p>
+        <TabsContent value="completed" className="mt-4">
+          {completedActivities.length > 0 ? (
+            <div className="space-y-4">
+              {completedActivities.map((activity) => (
+                <Card key={activity.id}>
+                  <CardHeader className="pb-2">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <CardTitle className="mb-2">{activity.title}</CardTitle>
+                        <CardDescription>{activity.type}类活动</CardDescription>
+                      </div>
+                      <Badge variant="outline">已完成</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <p className="text-sm">{activity.description}</p>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                               <div className="flex items-center text-sm text-muted-foreground">
@@ -155,23 +155,23 @@ export default function ActivityHistoryPage() {
             )}
           </TabsContent>
 
-          <TabsContent value="ongoing" className="mt-4">
-            {ongoingActivities.length > 0 ? (
-                <div className="space-y-4">
-                  {ongoingActivities.map((activity) => (
-                      <Card key={activity.id}>
-                        <CardHeader className="pb-2">
-                          <div className="flex justify-between items-start">
-                            <div>
-                              <CardTitle>{activity.title}</CardTitle>
-                              <CardDescription>{activity.type}类活动</CardDescription>
-                            </div>
-                            <Badge>进行中</Badge>
-                          </div>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="space-y-4">
-                            <p className="text-sm">{activity.description}</p>
+        <TabsContent value="ongoing" className="mt-4">
+          {ongoingActivities.length > 0 ? (
+            <div className="space-y-4">
+              {ongoingActivities.map((activity) => (
+                <Card key={activity.id}>
+                  <CardHeader className="pb-2">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <CardTitle className="mb-2">{activity.title}</CardTitle>
+                        <CardDescription>{activity.type}类活动</CardDescription>
+                      </div>
+                      <Badge>进行中</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <p className="text-sm">{activity.description}</p>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                               <div className="flex items-center text-sm text-muted-foreground">

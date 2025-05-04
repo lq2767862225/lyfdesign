@@ -119,7 +119,7 @@ export default function ManagerVolunteersPage() {
       <div className="flex items-center space-x-2">
         <Search className="h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="搜索志愿者姓名、院系或邮箱..."
+          placeholder="搜索志愿者姓名、院系或参与的活动..."
           value={searchQuery}
           onChange={handleSearch}
           className="max-w-sm"
@@ -135,11 +135,11 @@ export default function ManagerVolunteersPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>姓名</TableHead>
-                <TableHead>院系</TableHead>
-                <TableHead>参与活动数</TableHead>
-                <TableHead>信誉分</TableHead>
-                <TableHead>状态</TableHead>
+                <TableHead className="text-center">姓名</TableHead>
+                <TableHead className="text-center">院系</TableHead>
+                <TableHead className="text-center">参与活动数</TableHead>
+                <TableHead className="text-center">信誉分</TableHead>
+                <TableHead className="text-center">状态</TableHead>
                 <TableHead className="text-right">操作</TableHead>
               </TableRow>
             </TableHeader>
@@ -150,7 +150,7 @@ export default function ManagerVolunteersPage() {
                   return (
                     <TableRow key={volunteer.id}>
                       <TableCell>
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-2 justify-center">
                           <Avatar className="h-8 w-8">
                             <AvatarImage src={volunteer.avatar || "/placeholder.svg"} />
                             <AvatarFallback>{volunteer.name.charAt(0)}</AvatarFallback>
@@ -158,12 +158,12 @@ export default function ManagerVolunteersPage() {
                           <span className="font-medium">{volunteer.name}</span>
                         </div>
                       </TableCell>
-                      <TableCell>{volunteer.department}</TableCell>
-                      <TableCell>
+                      <TableCell className="text-center">{volunteer.department}</TableCell>
+                      <TableCell className="text-center">
                         <Badge variant="outline">{volunteerActivities.length}</Badge>
                       </TableCell>
-                      <TableCell>{volunteer.creditScore}</TableCell>
-                      <TableCell>
+                      <TableCell className="text-center">{volunteer.creditScore}</TableCell>
+                      <TableCell className="text-center">
                         {volunteer.creditScore <= 0 ? (
                           <Badge variant="destructive">黑名单</Badge>
                         ) : volunteer.creditScore >= 80 ? (
@@ -228,13 +228,6 @@ export default function ManagerVolunteersPage() {
               </div>
 
               <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <Mail className="mr-2 h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">邮箱</span>
-                  </div>
-                  <span className="text-sm font-medium">{selectedVolunteer.email}</span>
-                </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
                     <Phone className="mr-2 h-4 w-4 text-muted-foreground" />

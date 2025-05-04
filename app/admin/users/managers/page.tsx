@@ -103,7 +103,7 @@ export default function ManagersManagementPage() {
       <div className="flex items-center space-x-2">
         <Search className="h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="搜索负责人姓名、院系或邮箱..."
+          placeholder="搜索负责人姓名、院系..."
           value={searchQuery}
           onChange={handleSearch}
           className="max-w-full"
@@ -119,11 +119,11 @@ export default function ManagersManagementPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>姓名</TableHead>
-                <TableHead>院系</TableHead>
-                <TableHead>负责活动数</TableHead>
-                <TableHead>联系方式</TableHead>
-                <TableHead className="text-right">操作</TableHead>
+                <TableHead className="text-center align-middle">姓名</TableHead>
+                <TableHead className="text-center align-middle">院系</TableHead>
+                <TableHead className="text-center align-middle">负责活动数</TableHead>
+                <TableHead className="text-center align-middle">联系方式</TableHead>
+                <TableHead className="text-center align-middle" className="text-right">操作</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -133,7 +133,7 @@ export default function ManagersManagementPage() {
                   return (
                     <TableRow key={manager.id}>
                       <TableCell>
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-2 justify-center">
                           <Avatar className="h-8 w-8">
                             <AvatarImage src={manager.avatar || "/placeholder.svg"} />
                             <AvatarFallback>{manager.name.charAt(0)}</AvatarFallback>
@@ -141,11 +141,11 @@ export default function ManagersManagementPage() {
                           <span className="font-medium">{manager.name}</span>
                         </div>
                       </TableCell>
-                      <TableCell>{manager.department}</TableCell>
-                      <TableCell>
+                      <TableCell className="text-center">{manager.department}</TableCell>
+                      <TableCell className="text-center">
                         <Badge variant="outline">{managerActivities.length}</Badge>
                       </TableCell>
-                      <TableCell>{manager.phone}</TableCell>
+                      <TableCell className="text-center">{manager.phone}</TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
@@ -199,13 +199,6 @@ export default function ManagersManagementPage() {
               </div>
 
               <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <Mail className="mr-2 h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">邮箱</span>
-                  </div>
-                  <span className="text-sm font-medium">{selectedManager.email}</span>
-                </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
                     <Phone className="mr-2 h-4 w-4 text-muted-foreground" />

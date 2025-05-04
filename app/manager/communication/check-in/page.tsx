@@ -146,42 +146,9 @@ export default function CheckInPage() {
           {selectedActivity && (
             <Tabs defaultValue="qrcode">
               <TabsList>
-                <TabsTrigger value="qrcode">二维码签到</TabsTrigger>
                 <TabsTrigger value="manual">手动签到</TabsTrigger>
                 <TabsTrigger value="status">签到状态</TabsTrigger>
               </TabsList>
-
-              <TabsContent value="qrcode" className="mt-4">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>二维码签到</CardTitle>
-                    <CardDescription>生成签到二维码，志愿者可通过扫描二维码进行签到</CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex flex-col items-center">
-                    <div className="w-64 h-64 bg-gray-100 flex items-center justify-center mb-4 border">
-                      <QrCode className="w-32 h-32 text-gray-400" />
-                    </div>
-                    <div className="text-center">
-                      <p className="text-lg font-bold mb-2">签到码: {checkInCode}</p>
-                      <p className="text-sm text-muted-foreground">有效期: 30分钟</p>
-                    </div>
-                  </CardContent>
-                  <CardFooter className="flex justify-center">
-                    <Button
-                      onClick={() => {
-                        const newCode = Math.floor(100000 + Math.random() * 900000).toString()
-                        setCheckInCode(newCode)
-                        toast({
-                          title: "签到码已刷新",
-                        })
-                      }}
-                    >
-                      刷新签到码
-                    </Button>
-                  </CardFooter>
-                </Card>
-              </TabsContent>
-
               <TabsContent value="manual" className="mt-4">
                 <Card>
                   <CardHeader>

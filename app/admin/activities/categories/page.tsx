@@ -29,38 +29,24 @@ const getCategories = async () => {
   return [
     {
       id: "1",
-      name: "环保",
+      name: "环境保护",
       description: "环境保护相关的志愿活动，包括垃圾分类宣传、植树造林、河道清理等。",
       color: "#10b981",
       activitiesCount: 12,
     },
     {
       id: "2",
-      name: "教育",
-      description: "教育相关的志愿活动，包括支教、课后辅导、图书馆管理等。",
+      name: "校园活动",
+      description: "校园活动相关的志愿活动，包括支教、课后辅导、图书馆管理等。",
       color: "#3b82f6",
       activitiesCount: 8,
     },
     {
       id: "3",
-      name: "关爱",
+      name: "关怀老人",
       description: "关爱特殊群体的志愿活动，包括敬老院慰问、儿童关爱、残障人士帮扶等。",
       color: "#ec4899",
       activitiesCount: 15,
-    },
-    {
-      id: "4",
-      name: "科技",
-      description: "科技相关的志愿活动，包括科普宣传、技术支持、创新竞赛等。",
-      color: "#8b5cf6",
-      activitiesCount: 6,
-    },
-    {
-      id: "5",
-      name: "健康",
-      description: "健康相关的志愿活动，包括健康宣传、医疗支持、体育赛事等。",
-      color: "#f59e0b",
-      activitiesCount: 9,
     },
   ]
 }

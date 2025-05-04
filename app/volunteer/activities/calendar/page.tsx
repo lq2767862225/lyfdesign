@@ -280,8 +280,8 @@ export default function ActivityCalendarPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="lg:col-span-2">
           <CardHeader className="pb-2">
-            <div className="flex items-center justify-between">
-              <CardTitle>
+            <div className="flex items-center">
+              <CardTitle className="text-center flex-1">
                 {getYear(currentDate)}年{getMonthName(currentDate)}
               </CardTitle>
               <div className="flex space-x-2">
@@ -332,7 +332,7 @@ export default function ActivityCalendarPage() {
                           )}
                           onClick={() => setSelectedDate(day.date)}
                         >
-                          <span className={cn("text-sm font-medium", day.isToday ? "text-primary" : "")}>
+                          <span className={cn("text-lg font-medium", day.isToday ? "text-primary" : "")}>
                             {day.date.getDate()}
                           </span>
 

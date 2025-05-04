@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
-import { getCurrentUser, updateUserProfile } from "@/lib/api"
+import {getCurrentUser, getUsers, updateUserProfile} from "@/lib/api"
 import { useToast } from "@/hooks/use-toast"
 import { Award, Clock, Mail, Phone, School, User, Users } from "lucide-react"
 
@@ -24,13 +24,19 @@ export default function ProfileInfoPage() {
     email: "",
     phone: "",
     department: "",
+    studentId: "",    // 新增
+    gender: "",       // 新增
+    grade: "",        // 新增
+    class: ""         // 新增
   })
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const userData = await getCurrentUser()
-        setUser(userData)
+        const all_user = getUsers();
+        const user = (await all_user).filter((user) => user.studentId === userData.studentId)[0]
+        setUser(user)
 
         // 初始化表单数据
         if (userData) {
@@ -39,6 +45,10 @@ export default function ProfileInfoPage() {
             email: userData.email || "",
             phone: userData.phone || "",
             department: userData.department || "",
+            studentId: userData.studentId || "",    // 新增
+            gender: userData.gender || "",          // 新增
+            grade: userData.grade || "",            // 新增
+            class: userData.class || ""             // 新增
           })
         }
       } catch (error) {
@@ -133,10 +143,6 @@ export default function ProfileInfoPage() {
                     <span>用户名: {user.username}</span>
                   </div>
                   <div className="flex items-center text-sm">
-                    <Mail className="mr-2 h-4 w-4 text-muted-foreground" />
-                    <span>邮箱: {user.email}</span>
-                  </div>
-                  <div className="flex items-center text-sm">
                     <Phone className="mr-2 h-4 w-4 text-muted-foreground" />
                     <span>电话: {user.phone}</span>
                   </div>
@@ -154,25 +160,80 @@ export default function ProfileInfoPage() {
                   <CardTitle>编辑资料</CardTitle>
                   <CardDescription>更新您的个人信息</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">姓名</Label>
-                    <Input id="name" name="name" value={formData.name} onChange={handleChange} />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">邮箱</Label>
-                    <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">电话</Label>
-                    <Input id="phone" name="phone" value={formData.phone} onChange={handleChange} />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="department">院系</Label>
-                    <Input id="department" name="department" value={formData.department} onChange={handleChange} />
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* 左列 */}
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">姓名</Label>
+                        <Input id="name" name="name" value={formData.name} onChange={handleChange} />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="studentId">学号</Label>
+                        <Input
+                            id="studentId"
+                            name="studentId"
+                            value={formData.studentId}
+                            onChange={handleChange}
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="gender">性别</Label>
+                        <Input
+                            id="gender"
+                            name="gender"
+                            value={formData.gender}
+                            onChange={handleChange}
+                            placeholder="男/女/其他"
+                        />
+                      </div>
+
+                      {/* 院系移动到左列 */}
+                      <div className="space-y-2">
+                        <Label htmlFor="department">院系</Label>
+                        <Input
+                            id="department"
+                            name="department"
+                            value={formData.department}
+                            onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+
+                    {/* 右列 */}
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="grade">年级</Label>
+                        <Input
+                            id="grade"
+                            name="grade"
+                            value={formData.grade}
+                            onChange={handleChange}
+                            placeholder="例如：2023级"
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="class">班级</Label>
+                        <Input
+                            id="class"
+                            name="class"
+                            value={formData.class}
+                            onChange={handleChange}
+                            placeholder="例如：1班"
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="phone">电话</Label>
+                        <Input id="phone" name="phone" value={formData.phone} onChange={handleChange} />
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
-                <CardFooter>
+                <CardFooter className="flex justify-end">
                   <Button type="submit" disabled={saving}>
                     {saving ? "保存中..." : "保存更改"}
                   </Button>

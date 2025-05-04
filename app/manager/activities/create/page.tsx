@@ -138,12 +138,9 @@ export default function CreateActivityPage() {
                     <SelectValue placeholder="选择活动类型" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="环保">环保</SelectItem>
-                    <SelectItem value="关爱">关爱</SelectItem>
-                    <SelectItem value="教育">教育</SelectItem>
-                    <SelectItem value="科技">科技</SelectItem>
-                    <SelectItem value="健康">健康</SelectItem>
-                    <SelectItem value="其他">其他</SelectItem>
+                    <SelectItem value="环保">校园活动</SelectItem>
+                    <SelectItem value="关爱">关怀老人</SelectItem>
+                    <SelectItem value="教育">环境保护</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
