@@ -248,12 +248,6 @@ export async function updateTask(taskId: string, taskData: any) {
   return null
 }
 
-// 报表相关API
-export async function getReports(type: string) {
-  // 根据类型获取报表数据
-  return mockReports[type] || []
-}
-
 // 用户管理API
 export async function getUsers(role?: string) {
   if (role === "all") {
@@ -282,4 +276,60 @@ export async function updateUserCredit(userId: string, newCreditScore: number) {
     return mockUsers[userIndex]
   }
   return null
+}
+
+// 创建新用户
+export async function addUser(userData: any) {
+  // 实际应调用API创建用户
+  console.log("创建新用户:", userData)
+
+  // 模拟API返回，添加ID和其他默认字段
+  return {
+    id: `user_${Date.now()}`,
+    ...userData,
+    avatar: null,
+  }
+}
+
+// 批量导入用户
+export async function bulkImportUsers(file: File) {
+  // 实际应调用API上传文件并处理导入
+  console.log("批量导入用户文件:", file.name)
+
+  // 模拟API返回
+  return {
+    total: 10,
+    success: 8,
+    failed: 2,
+    users: [
+      {
+        id: `import_1_${Date.now()}`,
+        name: "李四",
+        studentId: "20210002",
+        gender: "男",
+        class: "计算机2班",
+        department: "计算机科学与技术学院",
+        grade: "2021级",
+        email: "lisi@example.com",
+        phone: "13900139000",
+        creditScore: 100,
+        serviceHours: 0,
+        role: "volunteer",
+      },
+      {
+        id: `import_2_${Date.now()}`,
+        name: "王五",
+        studentId: "20210003",
+        gender: "女",
+        class: "计算机2班",
+        department: "计算机科学与技术学院",
+        grade: "2021级",
+        email: "wangwu@example.com",
+        phone: "13700137000",
+        creditScore: 100,
+        serviceHours: 0,
+        role: "volunteer",
+      },
+    ],
+  }
 }

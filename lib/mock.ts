@@ -10,6 +10,7 @@ export const mockUsers = [
     email: "admin@example.com",
     phone: "13800000000",
     department: "大数据211",
+    creditScore: 3,
     firstLogin: false,
   },
   {
@@ -22,6 +23,7 @@ export const mockUsers = [
     email: "manager@example.com",
     phone: "13900000000",
     department: "大数据211",
+    creditScore: 3,
     firstLogin: false,
   },
   {
@@ -135,7 +137,7 @@ export const mockActivities = [
     managerId: "manager1",
     participants: ["volunteer1", "volunteer2"],
     createdAt: "2025-04-20T10:00:00",
-    materials: null, // 活动证明材料
+    materials: {}, // 活动证明材料
     isHot: true,
   },
   {
@@ -155,7 +157,7 @@ export const mockActivities = [
     managerId: "manager1",
     participants: ["volunteer1"],
     createdAt: "2025-04-22T14:30:00",
-    materials: null,
+    materials: {},
     isHot: false,
   },
   {
@@ -175,7 +177,7 @@ export const mockActivities = [
     managerId: "manager1",
     participants: ["volunteer2"],
     createdAt: "2025-04-21T09:15:00",
-    materials: null,
+    materials: {},
     isHot: true,
   },
   {
@@ -195,7 +197,7 @@ export const mockActivities = [
     managerId: "manager1",
     participants: [],
     createdAt: "2025-04-25T11:20:00",
-    materials: null,
+    materials: {},
     isHot: false,
   },
   {
@@ -215,7 +217,7 @@ export const mockActivities = [
     managerId: "manager1",
     participants: [],
     createdAt: "2025-04-26T16:45:00",
-    materials: null,
+    materials: {},
     isHot: false,
   },
   {
@@ -235,7 +237,7 @@ export const mockActivities = [
     managerId: "manager1",
     participants: [],
     createdAt: "2025-04-25T11:20:00",
-    materials: null,
+    materials: {},
     isHot: false,
   },
 ]
