@@ -3,11 +3,9 @@
 import React from "react"
 
 import { usePathname } from "next/navigation"
-import Link from "next/link"
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -93,7 +91,7 @@ export function BreadcrumbNav() {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <Home className="h-4 w-4" />
+          <div><Home className="h-4 w-4" /></div>
         </BreadcrumbItem>
 
         {/* 分隔符作为单独的元素，不嵌套在BreadcrumbItem中 */}
@@ -105,7 +103,7 @@ export function BreadcrumbNav() {
               {item.isLast ? (
                 <BreadcrumbPage>{item.displayName}</BreadcrumbPage>
               ) : (
-                <BreadcrumbItem>{item.displayName}</BreadcrumbItem>
+                <span>{item.displayName}</span>
               )}
             </BreadcrumbItem>
 

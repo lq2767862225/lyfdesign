@@ -19,6 +19,7 @@ import {
 import { logout } from "@/lib/api"
 import { useRouter } from "next/navigation"
 import { useSidebar } from "./sidebar-provider"
+import {Label} from "@/components/ui/label";
 
 interface MainSidebarProps {
   className?: string
