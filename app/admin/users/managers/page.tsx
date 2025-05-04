@@ -159,6 +159,9 @@ export default function ManagersManagementPage() {
                             <DropdownMenuItem onClick={() => handleViewActivities(manager)}>
                               查看负责活动
                             </DropdownMenuItem>
+                            <DropdownMenuItem className="text-red-600" onClick={() => {}}>
+                              降级为志愿者
+                            </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </TableCell>
