@@ -3,11 +3,9 @@
 import React from "react"
 
 import { usePathname } from "next/navigation"
-import Link from "next/link"
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -48,7 +46,7 @@ const pathMap: Record<string, string> = {
   info: "个人档案",
   "service-records": "服务记录",
   messages: "通讯中心",
-  system: "系统消息",
+  // system: "系统消息",
   groups: "群组消息",
 
   // 负责人路径
@@ -93,11 +91,7 @@ export function BreadcrumbNav() {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="/">
-              <Home className="h-4 w-4" />
-            </Link>
-          </BreadcrumbLink>
+          <div><Home className="h-4 w-4" /></div>
         </BreadcrumbItem>
 
         {/* 分隔符作为单独的元素，不嵌套在BreadcrumbItem中 */}
@@ -109,9 +103,7 @@ export function BreadcrumbNav() {
               {item.isLast ? (
                 <BreadcrumbPage>{item.displayName}</BreadcrumbPage>
               ) : (
-                <BreadcrumbLink asChild>
-                  <Link href={item.href}>{item.displayName}</Link>
-                </BreadcrumbLink>
+                <span>{item.displayName}</span>
               )}
             </BreadcrumbItem>
 
