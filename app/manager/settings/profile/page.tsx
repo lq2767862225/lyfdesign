@@ -150,7 +150,7 @@ export default function ManagerProfilePage() {
                 <Input id="phone" name="phone" value={formData.phone} onChange={handleChange} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="department">部门</Label>
+                <Label htmlFor="department">c</Label>
                 <Input id="department" name="department" value={formData.department} onChange={handleChange} />
               </div>
             </CardContent>
