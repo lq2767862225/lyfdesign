@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, Clock, MapPin, MessageSquare, Users, Trash2 } from "lucide-react"
-import { getActivities, getCurrentUser, updateActivity, deleteActivity } from "@/lib/api"
+import {getActivities, getCurrentUser, updateActivity, deleteActivity, getUsers} from "@/lib/api"
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 import {
@@ -35,6 +35,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
 const activityFormSchema = z.object({
   title: z.string().min(2, { message: "活动名称至少需要2个字符" }),
@@ -56,6 +58,8 @@ export default function MyActivitiesPage() {
   const [isDeleteAlertOpen, setIsDeleteAlertOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
+  const [isVolunteersDialogOpen, setIsVolunteersDialogOpen] = useState(false)
+  const [selectedVolunteers, setSelectedVolunteers] = useState<any[]>([])
 
   const form = useForm<z.infer<typeof activityFormSchema>>({
     resolver: zodResolver(activityFormSchema),
@@ -178,6 +182,16 @@ export default function MyActivitiesPage() {
     }
   }
 
+  const handleViewVolunteers = async (activity: any) => {
+    const users = await getUsers();
+
+    setSelectedActivity(activity)
+    setSelectedVolunteers(activity.participants.map((participant: string) => {
+      return users.find(({id}) => id === participant)
+    }) || [])
+    setIsVolunteersDialogOpen(true)
+  }
+
   const onSubmit = async (data: z.infer<typeof activityFormSchema>) => {
     if (!selectedActivity) return
 
@@ -297,6 +311,10 @@ export default function MyActivitiesPage() {
                       </div>
                     </CardContent>
                     <CardFooter className="flex justify-end gap-2">
+                      <Button variant="outline" onClick={() => handleViewVolunteers(activity)}>
+                        <Users className="mr-2 h-4 w-4" />
+                        查看志愿者
+                      </Button>
                       <Link href="/manager/communication/check-in">
                         <Button variant="outline">
                           <Users className="mr-2 h-4 w-4" />
@@ -309,9 +327,7 @@ export default function MyActivitiesPage() {
                           群聊
                         </Button>
                       </Link>
-                      {activity.status === "pending" && (
-                          <Button onClick={() => handleViewDetails(activity)}>编辑活动</Button>
-                      )}
+                      {activity.status === "pending" && <Button onClick={() => handleViewDetails(activity)}>编辑活动</Button>}
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
                           <Button variant="destructive" size="icon">
@@ -552,6 +568,66 @@ export default function MyActivitiesPage() {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
+
+        {/* 志愿者列表对话框 */}
+        <Dialog open={isVolunteersDialogOpen} onOpenChange={setIsVolunteersDialogOpen}>
+          <DialogContent className="sm:max-w-[700px]">
+            <DialogHeader>
+              <DialogTitle>活动参与志愿者</DialogTitle>
+              <DialogDescription>
+                {selectedActivity ? `"${selectedActivity.title}" 的参与志愿者列表` : "参与志愿者列表"}
+              </DialogDescription>
+            </DialogHeader>
+
+            {selectedVolunteers.length > 0 ? (
+                <div className="max-h-[400px] overflow-y-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="text-center">志愿者</TableHead>
+                        <TableHead className="text-center">学号</TableHead>
+                        <TableHead className="text-center">院系</TableHead>
+                        <TableHead className="text-center">联系方式</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {selectedVolunteers.map((volunteer) => (
+                          <TableRow key={volunteer.id}>
+                            <TableCell>
+                              <div className="flex items-center gap-2 justify-center">
+                                <div>
+                                  <p className="font-medium">{volunteer.name}</p>
+                                  <p className="text-xs text-muted-foreground">{volunteer.id}</p>
+                                </div>
+                              </div>
+                            </TableCell>
+                            <TableCell className="text-center">{volunteer.studentId}</TableCell>
+                            <TableCell className="text-center">
+                              {volunteer.department}
+                            </TableCell>
+                            <TableCell className="text-center">
+                              {volunteer.phone || volunteer.email || "未提供"}
+                            </TableCell>
+                          </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+            ) : (
+                <div className="text-center py-8">
+                  <Users className="mx-auto h-12 w-12 text-muted-foreground opacity-50" />
+                  <h3 className="mt-2 text-lg font-medium">暂无志愿者</h3>
+                  <p className="text-sm text-muted-foreground mt-1">该活动目前没有志愿者报名参与</p>
+                </div>
+            )}
+
+            <DialogFooter>
+              <Button variant="outline" onClick={() => setIsVolunteersDialogOpen(false)}>
+                关闭
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
   )
 }
