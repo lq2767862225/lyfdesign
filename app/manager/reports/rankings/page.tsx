@@ -1,17 +1,18 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import {useState, useEffect, useRef} from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Award, Medal, TrendingUp, Users } from "lucide-react"
 import { getActivities, getCurrentUser } from "@/lib/api"
 import { useToast } from "@/hooks/use-toast"
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from "recharts"
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer} from "recharts"
 
 export default function ManagerRankingsPage() {
   const { toast } = useToast()
   const [period, setPeriod] = useState("month")
   const [loading, setLoading] = useState(true)
+
   const [activities, setActivities] = useState<any[]>([])
   const [currentUser, setCurrentUser] = useState<any>(null)
 
@@ -129,19 +130,17 @@ export default function ManagerRankingsPage() {
             </div>
             <CardDescription>志愿者参与活动的月度变化趋势</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="h-64 flex items-center justify-center">
+          <CardContent className="h-full w-full">
+            <ResponsiveContainer width="100%" height="100%" maxHeight={500}>
               <LineChart
-                width={400}
-                height={250}
-                data={[
-                  { month: "1月", participants: 8 },
-                  { month: "2月", participants: 12 },
-                  { month: "3月", participants: 15 },
-                  { month: "4月", participants: 10 },
-                  { month: "5月", participants: 5 },
-                ]}
-                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                  data={[
+                    { month: "1月", participants: 8 },
+                    { month: "2月", participants: 12 },
+                    { month: "3月", participants: 15 },
+                    { month: "4月", participants: 10 },
+                    { month: "5月", participants: 5 },
+                  ]}
+                  margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="month" />
@@ -149,7 +148,7 @@ export default function ManagerRankingsPage() {
                 <Tooltip />
                 <Line type="monotone" dataKey="participants" stroke="#8884d8" activeDot={{ r: 8 }} strokeWidth={2} />
               </LineChart>
-            </div>
+            </ResponsiveContainer>
           </CardContent>
         </Card>
       </div>

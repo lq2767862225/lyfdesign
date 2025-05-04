@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Bell, Calendar, Clock, Heart, Info, MapPin, Users } from "lucide-react"
+import { Bell, Calendar, Clock, Heart, CalendarFold, MapPin, Users } from "lucide-react"
 import Link from "next/link"
 import { getAnnouncements, getActivities, joinActivity, getCurrentUser } from "@/lib/api"
 import { useToast } from "@/hooks/use-toast"
@@ -150,7 +150,7 @@ export default function VolunteerHomePage() {
                   <CardHeader className="pb-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <Info className="mr-2 h-5 w-5 text-primary" />
+                        <CalendarFold className="mr-2 h-5 w-5 text-primary" />
                         <CardTitle>{announcement.title}</CardTitle>
                       </div>
                       {announcement.important && <Badge>重要</Badge>}
