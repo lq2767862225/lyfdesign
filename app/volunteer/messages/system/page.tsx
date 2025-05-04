@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Bell, Calendar, Info } from "lucide-react"
+import { Bell, Calendar, CalendarFold } from "lucide-react"
 import { getAnnouncements } from "@/lib/api"
 import { useToast } from "@/hooks/use-toast"
 
@@ -179,7 +179,7 @@ export default function SystemMessagesPage() {
           <Card>
             <CardHeader>
               <div className="flex items-center">
-                <Info className="mr-2 h-5 w-5" />
+                <CalendarFold className="mr-2 h-5 w-5" />
                 <CardTitle>公告</CardTitle>
               </div>
               <CardDescription>最新系统公告</CardDescription>
