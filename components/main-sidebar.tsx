@@ -213,7 +213,7 @@ export function MainSidebar({ className }: MainSidebarProps) {
               <div key={i} className="mb-4">
                 {(item.submenu && item.submenu.length > 0) ? (
                     <Button variant={pathname.substring(0, item.href.length) === item.href ? "secondary" : "ghost"}
-                            className="w-full justify-start" disabled>
+                            className="w-full justify-start">
                       <item.icon className="mr-2 h-4 w-4"/>
                       {item.title}
                     </Button>
