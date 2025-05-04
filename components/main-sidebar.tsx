@@ -203,7 +203,7 @@ export function MainSidebar({ className }: MainSidebarProps) {
       <div className="space-y-4 py-4">
         <div className="px-4 py-2">
           <div className="flex justify-center mb-2">
-            <img src="/abstract-letter-w.png" alt="Logo" className="h-16 w-16 object-contain" />
+            <img src="/icon.png" alt="Logo" className="object-contain" />
           </div>
           <h2 className="mb-2 px-2 text-lg font-semibold tracking-tight text-center">校园志愿服务管理系统</h2>
         </div>
