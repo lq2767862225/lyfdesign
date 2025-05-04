@@ -9,7 +9,7 @@ export const mockUsers = [
     avatar: "/letter-a-abstract.png",
     email: "admin@example.com",
     phone: "13800000000",
-    department: "信息技术部",
+    department: "大数据211",
     firstLogin: false,
   },
   {
@@ -21,7 +21,7 @@ export const mockUsers = [
     avatar: "/abstract-geometric-z.png",
     email: "manager@example.com",
     phone: "13900000000",
-    department: "志愿服务部",
+    department: "大数据211",
     firstLogin: false,
   },
   {

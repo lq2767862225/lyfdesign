@@ -103,7 +103,7 @@ export default function ManagersManagementPage() {
       <div className="flex items-center space-x-2">
         <Search className="h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="搜索负责人姓名、部门或邮箱..."
+          placeholder="搜索负责人姓名、院系或邮箱..."
           value={searchQuery}
           onChange={handleSearch}
           className="max-w-full"
@@ -120,7 +120,7 @@ export default function ManagersManagementPage() {
             <TableHeader>
               <TableRow>
                 <TableHead>姓名</TableHead>
-                <TableHead>部门</TableHead>
+                <TableHead>院系</TableHead>
                 <TableHead>负责活动数</TableHead>
                 <TableHead>联系方式</TableHead>
                 <TableHead className="text-right">操作</TableHead>
