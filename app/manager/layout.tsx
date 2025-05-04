@@ -13,7 +13,7 @@ export default function ManagerLayout({
     <div className="flex min-h-screen">
       <MainSidebar className="fixed h-screen w-64 z-30" />
       <div className="flex-grow flex flex-col ml-64">
-        <header className="sticky top-0 z-20 border-b p-4 flex items-center justify-between bg-background">
+        <header className="sticky top-0 z-20 border-b p-4 flex items-center justify-between bg-background bg-[#FCF1F0]" >
           <BreadcrumbNav />
           <UserProfile />
         </header>

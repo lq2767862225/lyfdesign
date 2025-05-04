@@ -15,7 +15,7 @@ export default function VolunteerLayout({
         <MainSidebar className="w-full h-full" />
       </div>
       <div className="flex-grow flex flex-col ml-64">
-        <header className="sticky top-0 z-10 border-b bg-background p-4 flex items-center justify-between">
+        <header className="sticky top-0 z-10 border-b bg-background p-4 flex items-center justify-between bg-[#FCF1F0]">
           <BreadcrumbNav />
           <UserProfile />
         </header>

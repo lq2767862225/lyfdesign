@@ -122,8 +122,8 @@ export default function AdminActivityHistoryPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">活动历史记录</h1>
-          <p className="text-muted-foreground mt-1">查看所有已完成活动的历史记录和统计数据</p>
+          <h1 className="text-3xl font-bold tracking-tight">活动总览</h1>
+          <p className="text-muted-foreground mt-1">查看所有活动的记录和统计数据</p>
         </div>
         <Button variant="outline">
           <Download className="mr-2 h-4 w-4" />

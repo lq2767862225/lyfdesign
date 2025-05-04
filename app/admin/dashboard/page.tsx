@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, Check, Clock, Edit, Filter, Info, Plus, Search, Trash2 } from "lucide-react"
+import { Calendar, Check, Clock, Edit, Filter, CalendarFold, Plus, Search, Trash2 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
@@ -335,7 +335,7 @@ export default function AdminDashboardPage() {
             <DialogContent className="sm:max-w-[500px]">
               <DialogHeader>
                 <DialogTitle>发布新公告</DialogTitle>
-                <DialogDescription>创建新公告并发布给目标用户群体</DialogDescription>
+                <DialogDescription>创建新公告并发布给所有用户</DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
@@ -555,7 +555,7 @@ export default function AdminDashboardPage() {
                   <CardHeader className="pb-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <Info className="mr-2 h-5 w-5 text-primary" />
+                        <CalendarFold className="mr-2 h-5 w-5 text-primary" />
                         <CardTitle>{announcement.title}</CardTitle>
                       </div>
                     </div>
@@ -650,33 +650,6 @@ export default function AdminDashboardPage() {
                       placeholder="输入公告详细内容"
                       rows={5}
                     />
-                  </div>
-                  <div className="grid gap-2">
-                    <Label htmlFor="edit-targetGroup">目标群体</Label>
-                    <Select
-                      value={currentAnnouncement.targetGroup}
-                      onValueChange={(value) => setCurrentAnnouncement({ ...currentAnnouncement, targetGroup: value })}
-                    >
-                      <SelectTrigger id="edit-targetGroup">
-                        <SelectValue placeholder="选择目标群体" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">所有用户</SelectItem>
-                        <SelectItem value="volunteers">志愿者</SelectItem>
-                        <SelectItem value="managers">活动负责人</SelectItem>
-                        <SelectItem value="admins">管理员</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Switch
-                      id="edit-important"
-                      checked={currentAnnouncement.important}
-                      onCheckedChange={(checked) =>
-                        setCurrentAnnouncement({ ...currentAnnouncement, important: checked })
-                      }
-                    />
-                    <Label htmlFor="edit-important">标记为重要公告</Label>
                   </div>
                 </div>
                 <DialogFooter>

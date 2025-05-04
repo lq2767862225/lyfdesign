@@ -15,7 +15,7 @@ export default function AdminLayout({
         <MainSidebar className="h-full w-full" />
       </div>
       <div className="ml-64 flex-grow flex flex-col">
-        <header className="sticky top-0 z-10 border-b bg-background p-4 flex items-center justify-between">
+        <header className="sticky top-0 z-10 border-b bg-background p-4 flex items-center justify-between bg-[#FCF1F0]">
           <BreadcrumbNav />
           <UserProfile />
         </header>

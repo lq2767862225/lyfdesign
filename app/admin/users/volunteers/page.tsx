@@ -133,17 +133,17 @@ export default function VolunteersManagementPage() {
             <Table className="w-full whitespace-nowrap">
               <TableHeader className="sticky top-0 z-10 bg-background">
                 <TableRow>
-                  <TableHead className="sticky text-center left-0 z-20 bg-background">姓名</TableHead>
-                  <TableHead className="text-center">学号</TableHead>
-                  <TableHead className="text-center">性别</TableHead>
-                  <TableHead className="text-center">班级</TableHead>
-                  <TableHead className="text-center">学院</TableHead>
-                  <TableHead className="text-center">年级</TableHead>
-                  <TableHead className="text-center">联系方式</TableHead>
-                  <TableHead className="text-center">信誉分</TableHead>
-                  <TableHead className="text-center">服务时长</TableHead>
-                  <TableHead className="text-center">状态</TableHead>
-                  <TableHead className="text-right">操作</TableHead>
+                  <TableHead className="sticky left-0 z-20 bg-background text-center align-middle">姓名</TableHead>
+                  <TableHead className="text-center align-middle">学号</TableHead>
+                  <TableHead className="text-center align-middle">性别</TableHead>
+                  <TableHead className="text-center align-middle">班级</TableHead>
+                  <TableHead className="text-center align-middle">学院</TableHead>
+                  <TableHead className="text-center align-middle">年级</TableHead>
+                  <TableHead className="text-center align-middle">联系方式</TableHead>
+                  <TableHead className="text-center align-middle">信誉分</TableHead>
+                  <TableHead className="text-center align-middle">服务时长</TableHead>
+                  <TableHead className="text-center align-middle">状态</TableHead>
+                  <TableHead className="text-center align-middle">操作</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -159,15 +159,15 @@ export default function VolunteersManagementPage() {
                           <span className="font-medium">{volunteer.name}</span>
                         </div>
                       </TableCell>
-                      <TableCell>{volunteer.studentId}</TableCell>
-                      <TableCell>{volunteer.gender}</TableCell>
-                      <TableCell>{volunteer.class}</TableCell>
-                      <TableCell>{volunteer.department}</TableCell>
-                      <TableCell>{volunteer.grade}</TableCell>
-                      <TableCell>{volunteer.phone}</TableCell>
-                      <TableCell>{volunteer.creditScore}</TableCell>
-                      <TableCell>{volunteer.serviceHours}小时</TableCell>
-                      <TableCell>
+                      <TableCell className="text-center">{volunteer.studentId}</TableCell>
+                      <TableCell className="text-center">{volunteer.gender}</TableCell>
+                      <TableCell className="text-center">{volunteer.class}</TableCell>
+                      <TableCell className="text-center">{volunteer.department}</TableCell>
+                      <TableCell className="text-center">{volunteer.grade}</TableCell>
+                      <TableCell className="text-center">{volunteer.phone}</TableCell>
+                      <TableCell className="text-center">{volunteer.creditScore}</TableCell>
+                      <TableCell className="text-center">{volunteer.serviceHours}小时</TableCell>
+                      <TableCell className="text-center">
                         {volunteer.creditScore <= 0 ? (
                           <Badge variant="destructive">黑名单</Badge>
                         ) : volunteer.creditScore >= 80 ? (
@@ -202,6 +202,7 @@ export default function VolunteersManagementPage() {
                     </TableRow>
                   ))
                 ) : (
+                  // TODO(dev) 修改空数值时的状态
                   <TableRow>
                     <TableCell colSpan={11} className="text-center py-6 text-muted-foreground">
                       未找到匹配的志愿者

@@ -261,7 +261,7 @@ export default function ManagerDashboardPage() {
                     </div>
                   </CardContent>
                   {!task.completed && (
-                    <div className="px-6 pb-4 flex justify-end gap-2">
+                      <div className="px-6 pb-4 flex justify-end gap-2">
                       {task.title.includes("上传") && (
                         <Link href="/manager/activities/materials">
                           <Button>
@@ -269,8 +269,8 @@ export default function ManagerDashboardPage() {
                             上传材料
                           </Button>
                         </Link>
-                      )
-                    </div>
+                      )}
+                      </div>
                   )}
                 </Card>
               ))}

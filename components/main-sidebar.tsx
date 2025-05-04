@@ -46,6 +46,7 @@ export function MainSidebar({ className }: MainSidebarProps) {
             title: "工作台",
             href: "/admin/dashboard",
             icon: LayoutDashboard,
+            submenu: [],
           },
           {
             title: "活动监管",
@@ -54,7 +55,7 @@ export function MainSidebar({ className }: MainSidebarProps) {
             submenu: [
               { title: "活动申报审批", href: "/admin/activities/approval" },
               { title: "证明材料审批", href: "/admin/activities/materials" },
-              { title: "历史活动", href: "/admin/activities/history" },
+              { title: "活动总览", href: "/admin/activities/history" },
             ],
           },
           {
@@ -92,6 +93,7 @@ export function MainSidebar({ className }: MainSidebarProps) {
             title: "工作台",
             href: "/manager/dashboard",
             icon: LayoutDashboard,
+            submenu: [],
           },
           {
             title: "活动管理",
@@ -143,6 +145,7 @@ export function MainSidebar({ className }: MainSidebarProps) {
             title: "首页",
             href: "/volunteer/home",
             icon: Home,
+            submenu: [],
           },
           {
             title: "志愿活动",
@@ -190,7 +193,7 @@ export function MainSidebar({ className }: MainSidebarProps) {
 
   if (loading) {
     return (
-      <div className={cn("pb-12 border-r h-screen flex items-center justify-center", className)}>
+      <div className={cn("pb-12 border-r h-screen flex items-center justify-center", className ?? '')}>
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
           <p className="mt-2 text-sm text-muted-foreground">加载中...</p>
@@ -200,11 +203,11 @@ export function MainSidebar({ className }: MainSidebarProps) {
   }
 
   return (
-    <div className={cn("pb-12 border-r h-screen", className)}>
-      <div className="space-y-4 py-4">
-        <div className="px-4 py-2">
+    <div className={cn("pb-12 border-r h-screen", className ?? '')}>
+      <div className="space-y-4 py-4 bg-[#FCF1F0]">
+        <div className="px-4 py-2 border-b">
           <div className="flex justify-center mb-2">
-            <img src="/icon.png" alt="Logo" className="object-contain" />
+            <img src="/icon.png" alt="Logo" className="w-[6rem] h-[6rem] object-contain" />
           </div>
           <h2 className="mb-2 px-2 text-lg font-semibold tracking-tight text-center">校园志愿服务管理系统</h2>
         </div>

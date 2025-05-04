@@ -20,7 +20,7 @@ const pathMap: Record<string, string> = {
   activities: "活动管理",
   approval: "活动审批",
   materials: "证明材料",
-  history: "历史活动",
+  history: "活动总览",
   users: "用户管理",
   volunteers: "志愿者管理",
   managers: "负责人管理",
