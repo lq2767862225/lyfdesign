@@ -125,7 +125,7 @@ export default function VolunteersManagementPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>志愿者列表</CardTitle>
+          <CardTitle className="mb-2">志愿者列表</CardTitle>
           <CardDescription>系统中的所有志愿者用户</CardDescription>
         </CardHeader>
         <CardContent className="p-0">
