@@ -160,6 +160,9 @@ export default function ManagersManagementPage() {
                               查看负责活动
                             </DropdownMenuItem>
                             <DropdownMenuItem className="text-red-600" onClick={() => {}}>
+                              重置密码
+                            </DropdownMenuItem>
+                            <DropdownMenuItem className="text-red-600" onClick={() => {}}>
                               降级为志愿者
                             </DropdownMenuItem>
                           </DropdownMenuContent>

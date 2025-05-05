@@ -383,6 +383,9 @@ export default function VolunteersManagementPage() {
                                   >
                                     提升为负责人
                                   </DropdownMenuItem>
+                                  <DropdownMenuItem className="text-red-600" onClick={() => {}}>
+                                    重置密码
+                                  </DropdownMenuItem>
                                 </DropdownMenuContent>
                               </DropdownMenu>
                             </TableCell>
