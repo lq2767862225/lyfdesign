@@ -13,16 +13,11 @@ export default function RankingsPage() {
 
   // 使用模拟数据
   const personalRankings = [
-    { id: 1, name: "李志愿", hours: 24, department: "计算机学院" },
-    { id: 2, name: "王小明", hours: 18, department: "电子工程学院" },
-    { id: 3, name: "赵小红", hours: 5, department: "计算机学院" },
-    { id: 4, name: "张三", hours: 4.5, department: "机械工程学院" },
-    { id: 5, name: "李四", hours: 4, department: "经济管理学院" },
-    { id: 6, name: "王五", hours: 3.5, department: "外国语学院" },
-    { id: 7, name: "赵六", hours: 3, department: "物理学院" },
-    { id: 8, name: "钱七", hours: 2.5, department: "化学学院" },
-    { id: 9, name: "孙八", hours: 2, department: "生物学院" },
-    { id: 10, name: "周九", hours: 1.5, department: "数学学院" },
+    { id: 1, name: "志愿者1", hours: 24, department: "计算机学院" },
+    { id: 2, name: "志愿者2", hours: 18, department: "电子工程学院" },
+    { id: 3, name: "志愿者3", hours: 5, department: "计算机学院" },
+    { id: 4, name: "志愿者4", hours: 4.5, department: "机械工程学院" },
+    { id: 5, name: "志愿者5", hours: 4, department: "经济管理学院" },
   ]
 
   const departmentRankings = [
@@ -66,7 +61,7 @@ export default function RankingsPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">活动排行榜</h1>
+        <h1 className="text-3xl font-bold tracking-tight">排行榜</h1>
         <div className="flex items-center space-x-4">
           <span className="text-sm font-medium">时间范围：</span>
           <Tabs value={period} onValueChange={handlePeriodChange}>

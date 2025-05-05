@@ -18,11 +18,11 @@ export default function ManagerRankingsPage() {
 
   // 模拟排行榜数据
   const personalRankings = [
-    { id: 1, name: "李志愿", hours: 24, department: "计算机学院" },
-    { id: 2, name: "王小明", hours: 18, department: "电子工程学院" },
-    { id: 3, name: "赵小红", hours: 5, department: "计算机学院" },
-    { id: 4, name: "张三", hours: 4.5, department: "机械工程学院" },
-    { id: 5, name: "李四", hours: 4, department: "经济管理学院" },
+    { id: 1, name: "志愿者1", hours: 24, department: "计算机学院" },
+    { id: 2, name: "志愿者2", hours: 18, department: "电子工程学院" },
+    { id: 3, name: "志愿者3", hours: 5, department: "计算机学院" },
+    { id: 4, name: "志愿者4", hours: 4.5, department: "外国语学院" },
+    { id: 5, name: "志愿者5", hours: 4, department: "机械工程学院" },
   ]
 
   useEffect(() => {
@@ -79,7 +79,7 @@ export default function ManagerRankingsPage() {
           </Tabs>
         </div>
       </div>
-      <p className="text-muted-foreground">查看您负责活动的志愿者排行榜</p>
+      <p className="text-muted-foreground">查看您活动的志愿者排行榜</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
@@ -131,7 +131,7 @@ export default function ManagerRankingsPage() {
             <CardDescription>志愿者参与活动的月度变化趋势</CardDescription>
           </CardHeader>
           <CardContent className="h-full w-full">
-            <ResponsiveContainer width="100%" height="100%" maxHeight={500}>
+            <ResponsiveContainer width="100%" height="100%" maxHeight={400}>
               <LineChart
                   data={[
                     { month: "1月", participants: 8 },
@@ -164,10 +164,9 @@ export default function ManagerRankingsPage() {
         <CardContent>
           <div className="space-y-4">
             {[
-              { type: "环保", count: 12, percentage: 40 },
-              { type: "关爱", count: 9, percentage: 30 },
-              { type: "教育", count: 6, percentage: 20 },
-              { type: "科技", count: 3, percentage: 10 },
+              { type: "环境保护", count: 12, percentage: 40 },
+              { type: "关怀老人", count: 9, percentage: 30 },
+              { type: "校园活动", count: 6, percentage: 20 },
             ].map((item) => (
               <div key={item.type} className="space-y-2">
                 <div className="flex justify-between items-center">

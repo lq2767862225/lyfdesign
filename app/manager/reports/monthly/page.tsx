@@ -53,8 +53,8 @@ export default function ManagerMonthlyReportPage() {
       averageServiceHours: 3.5,
     },
     activityTypes: [
-      { type: "环保", count: 1, percentage: 50 },
-      { type: "关爱", count: 1, percentage: 50 },
+      { type: "环境保护", count: 1, percentage: 50 },
+      { type: "关怀老人", count: 1, percentage: 50 },
     ],
     departmentParticipation: [
       { department: "计算机学院", count: 2, percentage: 50 },
@@ -183,7 +183,7 @@ export default function ManagerMonthlyReportPage() {
                   data={monthlyData.activityTypes.map((item, index) => ({
                     name: item.type,
                     value: item.count,
-                    fill: ["#4f46e5", "#0ea5e9", "#10b981", "#f59e0b", "#ef4444"][index % 5],
+                    fill: ["#4f46e5", "#0ea5e9", "#10b981"][index % 5],
                   }))}
                   cx="50%"
                   cy="50%"

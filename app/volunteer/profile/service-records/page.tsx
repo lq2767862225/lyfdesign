@@ -128,7 +128,7 @@ export default function ServiceRecordsPage() {
                   <CardHeader className="pb-2">
                     <div className="flex justify-between items-start">
                       <div>
-                        <CardTitle>{activity.title}</CardTitle>
+                        <CardTitle className="mb-2">{activity.title}</CardTitle>
                         <CardDescription>{activity.type}类活动</CardDescription>
                       </div>
                       <Badge variant="outline">已完成</Badge>

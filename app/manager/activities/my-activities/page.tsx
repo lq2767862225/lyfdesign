@@ -246,7 +246,7 @@ export default function MyActivitiesPage() {
                     <CardHeader>
                       <div className="flex justify-between items-start">
                         <div>
-                          <CardTitle>{activity.title}</CardTitle>
+                          <CardTitle className="mb-2">{activity.title}</CardTitle>
                           <CardDescription>{activity.type}类活动</CardDescription>
                         </div>
                         <Badge
@@ -417,12 +417,9 @@ export default function MyActivitiesPage() {
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                <SelectItem value="社区服务">社区服务</SelectItem>
-                                <SelectItem value="环保">环保</SelectItem>
-                                <SelectItem value="教育">教育</SelectItem>
-                                <SelectItem value="文化">文化</SelectItem>
-                                <SelectItem value="健康">健康</SelectItem>
-                                <SelectItem value="其他">其他</SelectItem>
+                                <SelectItem value="环境保护">环境保护</SelectItem>
+                                <SelectItem value="关怀老人">关怀老人</SelectItem>
+                                <SelectItem value="校园活动">校园活动</SelectItem>
                               </SelectContent>
                             </Select>
                             <FormMessage />

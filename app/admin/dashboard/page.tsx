@@ -411,7 +411,7 @@ export default function AdminDashboardPage() {
             <CardTitle className="text-sm font-medium">总志愿者</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">324人</div>
+            <div className="text-2xl font-bold">158人</div>
             <p className="text-xs text-muted-foreground">
               较上月 <span className="text-green-500">+24</span>
             </p>

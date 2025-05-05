@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, Check, Clock, FileText, Filter, Info, Plus, Search, Upload } from "lucide-react"
+import { Calendar, Check, Clock, FileText, Filter, CalendarFold, Plus, Search, Upload } from "lucide-react"
 import Link from "next/link"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -29,20 +29,20 @@ export default function ManagerDashboardPage() {
 
   // 图表数据
   const activityTypeData = [
-    { name: "环保", value: 50 },
-    { name: "关爱", value: 50 },
+    { name: "环境保护", value: 50 },
+    { name: "关怀老人", value: 50 },
   ]
 
   const COLORS = ["#4f46e5", "#0ea5e9"]
 
   const volunteerParticipationData = [
-    { name: "李志愿", count: 2 },
-    { name: "王小明", count: 1 },
+    { name: "陆妍霏", count: 2 },
+    { name: "志愿者1", count: 1 },
   ]
 
   const serviceHoursData = [
-    { name: "校园环保", hours: 4 },
-    { name: "敬老院", hours: 3 },
+    { name: "环境保护", hours: 4 },
+    { name: "关怀老人", hours: 3 },
   ]
 
   // 获取数据
@@ -307,7 +307,7 @@ export default function ManagerDashboardPage() {
                   <CardHeader className="pb-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <Info className="mr-2 h-5 w-5 text-primary" />
+                        <CalendarFold className="mr-2 h-5 w-5 text-primary" />
                         <CardTitle>{announcement.title}</CardTitle>
                       </div>
                       {announcement.important && <Badge>重要</Badge>}

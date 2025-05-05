@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
 import { getCurrentUser } from "@/lib/api"
 import { AlertTriangle, CheckCircle2, XCircle } from "lucide-react"
 
@@ -77,7 +76,6 @@ export default function CreditScorePage() {
         <CardContent>
           <div className="flex flex-col items-center space-y-4">
             <div className="text-6xl font-bold">{user?.creditScore || 0}</div>
-            <Progress value={user?.creditScore || 0} max={3} className="w-full" />
 
             <div
               className={`mt-4 p-4 rounded-lg w-full ${

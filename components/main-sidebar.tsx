@@ -72,7 +72,7 @@ export function MainSidebar({ className }: MainSidebarProps) {
             href: "/admin/analytics",
             icon: BarChart,
             submenu: [
-              { title: "活动排行榜", href: "/admin/analytics/rankings" },
+              { title: "排行榜", href: "/admin/analytics/rankings" },
               { title: "活动预警", href: "/admin/analytics/warnings" },
               { title: "月度报表", href: "/admin/analytics/monthly-report" },
             ],
@@ -102,7 +102,7 @@ export function MainSidebar({ className }: MainSidebarProps) {
             submenu: [
               { title: "活动申报", href: "/manager/activities/create" },
               { title: "我的活动", href: "/manager/activities/my-activities" },
-              { title: "活动证明", href: "/manager/activities/materials" },
+              { title: "活动认证", href: "/manager/activities/materials" },
             ],
           },
           {

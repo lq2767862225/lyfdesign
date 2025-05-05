@@ -119,10 +119,6 @@ export default function ManagerProfilePage() {
                 <span>用户名: {user.username}</span>
               </div>
               <div className="flex items-center text-sm">
-                <Mail className="mr-2 h-4 w-4 text-muted-foreground" />
-                <span>邮箱: {user.email}</span>
-              </div>
-              <div className="flex items-center text-sm">
                 <Phone className="mr-2 h-4 w-4 text-muted-foreground" />
                 <span>电话: {user.phone}</span>
               </div>
@@ -142,15 +138,11 @@ export default function ManagerProfilePage() {
                 <Input id="name" name="name" value={formData.name} onChange={handleChange} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email">邮箱</Label>
-                <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} />
-              </div>
-              <div className="space-y-2">
                 <Label htmlFor="phone">电话</Label>
                 <Input id="phone" name="phone" value={formData.phone} onChange={handleChange} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="department">c</Label>
+                <Label htmlFor="department">院系</Label>
                 <Input id="department" name="department" value={formData.department} onChange={handleChange} />
               </div>
             </CardContent>

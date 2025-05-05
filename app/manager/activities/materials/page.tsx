@@ -2,6 +2,8 @@
 
 import type React from "react"
 
+import _ from 'lodash';
+
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -23,6 +25,7 @@ export default function ActivityMaterialsPage() {
   const [uploading, setUploading] = useState(false)
   const [materialDescription, setMaterialDescription] = useState("")
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null)
+  const [volunteerHours, setVolunteerHours] = useState("")
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +41,7 @@ export default function ActivityMaterialsPage() {
               activity.managerId === user.id &&
               activity.status === "approved" &&
               new Date(activity.endTime) < new Date() &&
-              !activity.materials,
+              _.isEmpty(activity.materials),
           )
           setActivities(myActivities)
 
@@ -122,8 +125,8 @@ export default function ActivityMaterialsPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold tracking-tight">活动证明材料</h1>
-      <p className="text-muted-foreground">上传活动证明材料，用于活动认证和志愿时长核算</p>
+      <h1 className="text-3xl font-bold tracking-tight">活动认证材料</h1>
+      <p className="text-muted-foreground">上传活动认证材料，用于活动认证和志愿时长核算</p>
 
       <Tabs defaultValue="pending">
         <TabsList>
@@ -137,7 +140,7 @@ export default function ActivityMaterialsPage() {
               <Card className="md:col-span-1">
                 <CardHeader>
                   <CardTitle>选择活动</CardTitle>
-                  <CardDescription>请选择需要上传证明材料的活动</CardDescription>
+                  <CardDescription>请选择需要上传认证材料的活动</CardDescription>
                 </CardHeader>
                 <CardContent className="p-0">
                   <div className="divide-y">
@@ -172,7 +175,19 @@ export default function ActivityMaterialsPage() {
                       <CardDescription>请上传活动照片、签到表等证明材料，用于活动认证和志愿时长核算</CardDescription>
                     </CardHeader>
                     <CardContent>
+
                       <div className="space-y-4">
+                        {/* 新增志愿者时长展示 */}
+                        <div className="space-y-2">
+                                    <Label htmlFor="volunteer-hours">志愿者时长</Label>
+                                    <Input
+                                      id="volunteer-hours"
+                                      type="number"
+                                      value={volunteerHours}
+                                      onChange={(e) => setVolunteerHours(e.target.value)}
+                                      placeholder="请输入时长（小时）"
+                                    />
+                                  </div>
                         <div className="space-y-2">
                           <Label htmlFor="description">材料说明</Label>
                           <Textarea

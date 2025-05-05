@@ -123,7 +123,9 @@ export default function VolunteerHomePage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">欢迎回来，志愿者</h1>
+        <h1 className="text-3xl font-bold tracking-tight">
+          欢迎回来，{currentUser?.name || '志愿者'}
+        </h1>
         <Button variant="outline" size="icon">
           <Bell className="h-4 w-4" />
         </Button>
