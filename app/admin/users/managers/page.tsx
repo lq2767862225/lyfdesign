@@ -123,7 +123,7 @@ export default function ManagersManagementPage() {
                 <TableHead className="text-center align-middle">院系</TableHead>
                 <TableHead className="text-center align-middle">负责活动数</TableHead>
                 <TableHead className="text-center align-middle">联系方式</TableHead>
-                <TableHead className="text-center align-middle" className="text-right">操作</TableHead>
+                <TableHead className="text-center align-middle text-right">操作</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
