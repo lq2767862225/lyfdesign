@@ -28,11 +28,11 @@ export default function MonthlyReportPage() {
   // 模拟月度数据
   const monthlyData = {
     summary: {
-      totalActivities: 12,
+      totalActivities: 30,
       completedActivities: 8,
-      totalParticipants: 156,
-      totalServiceHours: 468,
-      averageServiceHours: 3.0,
+      totalParticipants: 76,
+      totalServiceHours: 180,
+      averageServiceHours: 2.3,
     },
     activityTypes: [
       { type: "校园活动", count: 4, percentage: 33.3, value: 4 },
@@ -40,17 +40,17 @@ export default function MonthlyReportPage() {
       { type: "关爱老人", count: 2, percentage: 16.7, value: 2 },
     ],
     departmentParticipation: [
-      { department: "计算机学院", count: 45, percentage: 28.8 },
-      { department: "电子工程学院", count: 38, percentage: 24.4 },
-      { department: "机械工程学院", count: 30, percentage: 19.2 },
-      { department: "经济管理学院", count: 25, percentage: 16.0 },
-      { department: "外国语学院", count: 18, percentage: 11.5 },
+      { department: "计算机学院", count: 24, percentage: 26.3 },
+      { department: "电子工程学院", count:23, percentage: 25.0 },
+      { department: "机械工程学院", count:21, percentage: 19.7 },
+      { department: "经济管理学院", count:21, percentage: 15.7 },
+      { department: "外国语学院", count: 19, percentage: 13.1 },
     ],
     weeklyTrend: [
-      { week: "第1周", hours: 120, name: "第1周" },
-      { week: "第2周", hours: 98, name: "第2周" },
-      { week: "第3周", hours: 150, name: "第3周" },
-      { week: "第4周", hours: 100, name: "第4周" },
+      { week: "第1周", hours: 180, name: "第1周" },
+      { week: "第2周", hours: 0, name: "第2周" },
+      { week: "第3周", hours: 0, name: "第3周" },
+      { week: "第4周", hours: 0, name: "第4周" },
     ],
   }
 

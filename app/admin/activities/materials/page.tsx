@@ -79,30 +79,22 @@ export default function AdminActivityMaterialsPage() {
     // 搜索筛选
     if (searchQuery) {
       filtered = filtered.filter(
-          (activity) =>
-              activity.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-              (activity.materials.description &&
-                  activity.materials.description.toLowerCase().includes(searchQuery.toLowerCase())),
+        (activity) =>
+          activity.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          (activity.materials.description &&
+            activity.materials.description.toLowerCase().includes(searchQuery.toLowerCase())),
       )
     }
 
     // 状态筛选
     if (filterStatus === "pending") {
       filtered = filtered.filter(
-          (activity) => activity.materials && !activity.materials.approved && !activity.materials.rejected,
+        (activity) => activity.materials && !activity.materials.approved && !activity.materials.rejected,
       )
     } else if (filterStatus === "approved") {
       filtered = filtered.filter((activity) => activity.materials && activity.materials.approved)
     } else if (filterStatus === "rejected") {
       filtered = filtered.filter((activity) => activity.materials && activity.materials.rejected)
-    } else if (filterStatus === "reviewed") {
-      filtered = filtered.filter(
-          (activity) => activity.materials && (activity.materials.approved || activity.materials.rejected),
-      )
-    } else if (filterStatus === "unreviewed") {
-      filtered = filtered.filter(
-          (activity) => activity.materials && !activity.materials.approved && !activity.materials.rejected,
-      )
     }
 
     setFilteredActivities(filtered)

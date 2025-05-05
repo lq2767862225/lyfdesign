@@ -12,34 +12,34 @@ export default function RankingsPage() {
 
   // 模拟排行榜数据
   const personalRankings = [
-    { id: 1, name: "李志愿", hours: 24, department: "计算机学院" },
-    { id: 2, name: "王小明", hours: 18, department: "电子工程学院" },
-    { id: 3, name: "赵小红", hours: 5, department: "计算机学院" },
-    { id: 4, name: "张三", hours: 4.5, department: "机械工程学院" },
-    { id: 5, name: "李四", hours: 4, department: "经济管理学院" },
+    { id: 1, name: "志愿者1", hours: 24,  department: "计算机学院" },
+    { id: 2, name: "志愿者2", hours:  23, department: "电子工程学院" },
+    { id: 3, name: "志愿者3", hours:  21,department: "计算机学院" },
+    { id: 4, name: "志愿者4", hours:  21, department: "机械工程学院" },
+    { id: 5, name: "志愿者5", hours: 19, department: "经济管理学院" },
   ]
 
   const departmentRankings = [
-    { id: 1, name: "计算机学院", hours: 29, volunteers: 45 },
-    { id: 2, name: "电子工程学院", hours: 18, volunteers: 38 },
-    { id: 3, name: "机械工程学院", hours: 12, volunteers: 30 },
-    { id: 4, name: "经济管理学院", hours: 10, volunteers: 25 },
-    { id: 5, name: "外国语学院", hours: 8, volunteers: 20 },
+    { id: 1, name: "计算机学院", hours: 50, volunteers: 20 },
+    { id: 2, name: "电子工程学院", hours: 43, volunteers: 19 },
+    { id: 3, name: "机械工程学院", hours: 38, volunteers: 15 },
+    { id: 4, name: "经济管理学院", hours: 29, volunteers: 12 },
+    { id: 5, name: "外国语学院", hours: 20, volunteers: 10 },
   ]
 
   const gradeRankings = [
-    { id: 1, name: "2022级", count: 45, percentage: "35%" },
-    { id: 2, name: "2023级", count: 38, percentage: "30%" },
-    { id: 3, name: "2021级", count: 30, percentage: "25%" },
-    { id: 4, name: "2024级", count: 12, percentage: "10%" },
+    { id: 1, name: "2022级", count: 26, percentage: "34.2%" },
+    { id: 2, name: "2023级", count: 20, percentage: "26.3%" },
+    { id: 3, name: "2021级", count: 20, percentage: "26.3%" },
+    { id: 4, name: "2024级", count: 10, percentage: "13.1%" },
   ]
 
   const monthlyTrend = [
-    { month: "1月", hours: 120 },
-    { month: "2月", hours: 150 },
-    { month: "3月", hours: 180 },
-    { month: "4月", hours: 200 },
-    { month: "5月", hours: 0 },
+    { month: "1月", hours: 12 },
+    { month: "2月", hours: 15 },
+    { month: "3月", hours: 18 },
+    { month: "4月", hours: 20 },
+    { month: "5月", hours: 5 },
   ]
 
   return (
@@ -197,11 +197,11 @@ export default function RankingsPage() {
               >
                 <LineChart
                   data={[
-                    { month: "1月", hours: 120 },
-                    { month: "2月", hours: 150 },
-                    { month: "3月", hours: 180 },
-                    { month: "4月", hours: 200 },
-                    { month: "5月", hours: 0 },
+                    { month: "1月", hours: 0 },
+                    { month: "2月", hours: 0 },
+                    { month: "3月", hours: 0 },
+                    { month: "4月", hours: 0 },
+                    { month: "5月", hours: 7 },
                   ]}
                   margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
                 >

@@ -263,7 +263,7 @@ export default function ProfileInfoPage() {
                         <p className="text-sm text-muted-foreground">总志愿服务小时数</p>
                       </div>
                     </div>
-                    <div className="text-2xl font-bold">{user.serviceHours || 0}小时</div>
+                    <div className="text-2xl font-bold">{7||user.serviceHours || 0}小时</div>
                   </div>
 
                   <div className="flex justify-between items-center">
@@ -300,7 +300,7 @@ export default function ProfileInfoPage() {
                 <div className="h-64 flex items-end justify-between">
                   {["1月", "2月", "3月", "4月", "5月"].map((month, index) => {
                     // 模拟数据
-                    const hours = [4, 6, 8, 6, 0][index]
+                    const hours = [0, 0, 0, , 7][index]
                     const maxHeight = 180
                     const height = hours ? (hours / 8) * maxHeight : 20
 

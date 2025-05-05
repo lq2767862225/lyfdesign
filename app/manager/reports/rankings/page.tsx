@@ -19,10 +19,10 @@ export default function ManagerRankingsPage() {
   // 模拟排行榜数据
   const personalRankings = [
     { id: 1, name: "志愿者1", hours: 24, department: "计算机学院" },
-    { id: 2, name: "志愿者2", hours: 18, department: "电子工程学院" },
-    { id: 3, name: "志愿者3", hours: 5, department: "计算机学院" },
-    { id: 4, name: "志愿者4", hours: 4.5, department: "外国语学院" },
-    { id: 5, name: "志愿者5", hours: 4, department: "机械工程学院" },
+    { id: 2, name: "志愿者2", hours: 23, department: "电子工程学院" },
+    { id: 3, name: "志愿者3", hours: 21, department: "机械工程学院" },
+    { id: 4, name: "志愿者4", hours: 21, department: "经济管理学院" },
+    { id: 5, name: "志愿者5", hours: 19, department: "外国语学院" },
   ]
 
   useEffect(() => {
@@ -79,7 +79,7 @@ export default function ManagerRankingsPage() {
           </Tabs>
         </div>
       </div>
-      <p className="text-muted-foreground">查看您活动的志愿者排行榜</p>
+      <p className="text-muted-foreground">查看全体志愿者排行榜</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
@@ -134,11 +134,11 @@ export default function ManagerRankingsPage() {
             <ResponsiveContainer width="100%" height="100%" maxHeight={400}>
               <LineChart
                   data={[
-                    { month: "1月", participants: 8 },
-                    { month: "2月", participants: 12 },
-                    { month: "3月", participants: 15 },
-                    { month: "4月", participants: 10 },
-                    { month: "5月", participants: 5 },
+                    { month: "1月", participants: 56 },
+                    { month: "2月", participants: 62 },
+                    { month: "3月", participants: 34 },
+                    { month: "4月", participants: 60 },
+                    { month: "5月", participants: 76 },
                   ]}
                   margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
               >
@@ -164,9 +164,9 @@ export default function ManagerRankingsPage() {
         <CardContent>
           <div className="space-y-4">
             {[
-              { type: "环境保护", count: 12, percentage: 40 },
-              { type: "关怀老人", count: 9, percentage: 30 },
-              { type: "校园活动", count: 6, percentage: 20 },
+              { type: "环境保护", count: 36, percentage: 47.3 },
+              { type: "关怀老人", count: 25, percentage: 32.8 },
+              { type: "校园活动", count: 15, percentage: 19.7 },
             ].map((item) => (
               <div key={item.type} className="space-y-2">
                 <div className="flex justify-between items-center">

@@ -29,7 +29,7 @@ export default function CheckInPage() {
         const activitiesData = await getActivities()
         // 只显示已审批的活动
         const approvedActivities = activitiesData.filter(
-          (activity: any) => activity.status === "approved" && new Date(activity.startTime) > new Date(),
+            (activity: any) => activity.status === "approved" && new Date(activity.startTime) > new Date(),
         )
         setActivities(approvedActivities)
 
@@ -116,167 +116,167 @@ export default function CheckInPage() {
   const participants = getParticipants()
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-bold tracking-tight">活动签到</h1>
-      <p className="text-muted-foreground">管理志愿者活动签到</p>
+      <div className="space-y-6">
+        <h1 className="text-3xl font-bold tracking-tight">活动签到</h1>
+        <p className="text-muted-foreground">管理志愿者活动签到</p>
 
-      {activities.length > 0 ? (
-        <>
-          <Card>
-            <CardHeader>
-              <CardTitle>选择活动</CardTitle>
-              <CardDescription>请选择需要进行签到的活动</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Select value={selectedActivity} onValueChange={handleActivityChange}>
-                <SelectTrigger>
-                  <SelectValue placeholder="选择活动" />
-                </SelectTrigger>
-                <SelectContent>
-                  {activities.map((activity) => (
-                    <SelectItem key={activity.id} value={activity.id}>
-                      {activity.title} ({new Date(activity.startTime).toLocaleDateString()})
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </CardContent>
-          </Card>
+        {activities.length > 0 ? (
+            <>
+              <Card>
+                <CardHeader>
+                  <CardTitle>选择活动</CardTitle>
+                  <CardDescription>请选择需要进行签到的活动</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Select value={selectedActivity} onValueChange={handleActivityChange}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="选择活动" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {activities.map((activity) => (
+                          <SelectItem key={activity.id} value={activity.id}>
+                            {activity.title} ({new Date(activity.startTime).toLocaleDateString()})
+                          </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </CardContent>
+              </Card>
 
-          {selectedActivity && (
-            <Tabs defaultValue="qrcode">
-              <TabsList>
-                <TabsTrigger value="manual">手动签到</TabsTrigger>
-                <TabsTrigger value="status">签到状态</TabsTrigger>
-              </TabsList>
-              <TabsContent value="manual" className="mt-4">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>手动签到</CardTitle>
-                    <CardDescription>为志愿者手动进行签到操作</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="volunteer">选择志愿者</Label>
-                        <Select value={manualCheckInId} onValueChange={setManualCheckInId}>
-                          <SelectTrigger id="volunteer">
-                            <SelectValue placeholder="选择志愿者" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {participants.map((volunteer) => (
-                              <SelectItem
-                                key={volunteer.id}
-                                value={volunteer.id}
-                                disabled={checkedInUsers.includes(volunteer.id)}
-                              >
-                                {volunteer.name} {checkedInUsers.includes(volunteer.id) ? "(已签到)" : ""}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
+              {selectedActivity && (
+                  <Tabs defaultValue="qrcode">
+                    <TabsList>
+                      <TabsTrigger value="manual">手动签到</TabsTrigger>
+                      <TabsTrigger value="status">签到状态</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="manual" className="mt-4">
+                      <Card>
+                        <CardHeader>
+                          <CardTitle>手动签到</CardTitle>
+                          <CardDescription>为志愿者手动进行签到操作</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="space-y-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="volunteer">选择志愿者</Label>
+                              <Select value={manualCheckInId} onValueChange={setManualCheckInId}>
+                                <SelectTrigger id="volunteer">
+                                  <SelectValue placeholder="选择志愿者" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {participants.map((volunteer) => (
+                                      <SelectItem
+                                          key={volunteer.id}
+                                          value={volunteer.id}
+                                          disabled={checkedInUsers.includes(volunteer.id)}
+                                      >
+                                        {volunteer.name} {checkedInUsers.includes(volunteer.id) ? "(已签到)" : ""}
+                                      </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            </div>
 
-                      <Button onClick={handleManualCheckIn} disabled={!manualCheckInId}>
-                        确认签到
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="status" className="mt-4">
-                <Card>
-                  <CardHeader>
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <CardTitle>签到状态</CardTitle>
-                        <CardDescription>查看志愿者签到情况</CardDescription>
-                      </div>
-                      <Badge>
-                        已签到: {checkedInUsers.length}/{participants.length}
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    {activity && (
-                      <div className="mb-4 p-4 bg-muted rounded-lg">
-                        <h3 className="font-medium">{activity.title}</h3>
-                        <div className="grid grid-cols-2 gap-2 mt-2 text-sm">
-                          <div className="flex items-center">
-                            <Calendar className="mr-1 h-4 w-4" />
-                            <span>{new Date(activity.startTime).toLocaleDateString()}</span>
+                            <Button onClick={handleManualCheckIn} disabled={!manualCheckInId}>
+                              确认签到
+                            </Button>
                           </div>
-                          <div className="flex items-center">
-                            <Clock className="mr-1 h-4 w-4" />
-                            <span>
+                        </CardContent>
+                      </Card>
+                    </TabsContent>
+
+                    <TabsContent value="status" className="mt-4">
+                      <Card>
+                        <CardHeader>
+                          <div className="flex justify-between items-start">
+                            <div>
+                              <CardTitle>签到状态</CardTitle>
+                              <CardDescription>查看志愿者签到情况</CardDescription>
+                            </div>
+                            <Badge>
+                              已签到: {checkedInUsers.length}/{participants.length}
+                            </Badge>
+                          </div>
+                        </CardHeader>
+                        <CardContent>
+                          {activity && (
+                              <div className="mb-4 p-4 bg-muted rounded-lg">
+                                <h3 className="font-medium">{activity.title}</h3>
+                                <div className="grid grid-cols-2 gap-2 mt-2 text-sm">
+                                  <div className="flex items-center">
+                                    <Calendar className="mr-1 h-4 w-4" />
+                                    <span>{new Date(activity.startTime).toLocaleDateString()}</span>
+                                  </div>
+                                  <div className="flex items-center">
+                                    <Clock className="mr-1 h-4 w-4" />
+                                    <span>
                               {new Date(activity.startTime).toLocaleTimeString([], {
                                 hour: "2-digit",
                                 minute: "2-digit",
                               })}{" "}
-                              -
-                              {new Date(activity.endTime).toLocaleTimeString([], {
-                                hour: "2-digit",
-                                minute: "2-digit",
-                              })}
+                                      -
+                                      {new Date(activity.endTime).toLocaleTimeString([], {
+                                        hour: "2-digit",
+                                        minute: "2-digit",
+                                      })}
                             </span>
-                          </div>
-                          <div className="flex items-center">
-                            <MapPin className="mr-1 h-4 w-4" />
-                            <span>{activity.location}</span>
-                          </div>
-                          <div className="flex items-center">
-                            <Users className="mr-1 h-4 w-4" />
-                            <span>已报名: {participants.length}人</span>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {participants.length > 0 ? (
-                      <div className="space-y-3">
-                        {participants.map((volunteer) => (
-                          <div
-                            key={volunteer.id}
-                            className={`flex items-center justify-between p-3 rounded-lg border ${
-                              checkedInUsers.includes(volunteer.id) ? "bg-green-50 border-green-200" : ""
-                            }`}
-                          >
-                            <div className="flex items-center space-x-3">
-                              <Avatar>
-                                <AvatarImage src={volunteer.avatar || "/placeholder.svg"} />
-                                <AvatarFallback>{volunteer.name.charAt(0)}</AvatarFallback>
-                              </Avatar>
-                              <div>
-                                <p className="font-medium">{volunteer.name}</p>
-                                <p className="text-xs text-muted-foreground">{volunteer.department}</p>
+                                  </div>
+                                  <div className="flex items-center">
+                                    <MapPin className="mr-1 h-4 w-4" />
+                                    <span>{activity.location}</span>
+                                  </div>
+                                  <div className="flex items-center">
+                                    <Users className="mr-1 h-4 w-4" />
+                                    <span>已报名: {participants.length}人</span>
+                                  </div>
+                                </div>
                               </div>
-                            </div>
-                            {checkedInUsers.includes(volunteer.id) ? (
-                              <Badge className="bg-green-500">
-                                <Check className="mr-1 h-3 w-3" /> 已签到
-                              </Badge>
-                            ) : (
-                              <Badge variant="outline">未签到</Badge>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="text-center py-8 text-muted-foreground">暂无志愿者报名参加该活动</div>
-                    )}
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            </Tabs>
-          )}
-        </>
-      ) : (
-        <div className="text-center py-12 border rounded-lg">
-          <h3 className="text-lg font-medium">暂无可签到的活动</h3>
-          <p className="text-muted-foreground mt-1">当有新的活动时会显示在这里</p>
-        </div>
-      )}
-    </div>
+                          )}
+
+                          {participants.length > 0 ? (
+                              <div className="space-y-3">
+                                {participants.map((volunteer) => (
+                                    <div
+                                        key={volunteer.id}
+                                        className={`flex items-center justify-between p-3 rounded-lg border ${
+                                            checkedInUsers.includes(volunteer.id) ? "bg-green-50 border-green-200" : ""
+                                        }`}
+                                    >
+                                      <div className="flex items-center space-x-3">
+                                        <Avatar>
+                                          <AvatarImage src={volunteer.avatar || "/placeholder.svg"} />
+                                          <AvatarFallback>{volunteer.name.charAt(0)}</AvatarFallback>
+                                        </Avatar>
+                                        <div>
+                                          <p className="font-medium">{volunteer.name}</p>
+                                          <p className="text-xs text-muted-foreground">{volunteer.department}</p>
+                                        </div>
+                                      </div>
+                                      {checkedInUsers.includes(volunteer.id) ? (
+                                          <Badge className="bg-green-500">
+                                            <Check className="mr-1 h-3 w-3" /> 已签到
+                                          </Badge>
+                                      ) : (
+                                          <Badge variant="outline">未签到</Badge>
+                                      )}
+                                    </div>
+                                ))}
+                              </div>
+                          ) : (
+                              <div className="text-center py-8 text-muted-foreground">暂无志愿者报名参加该活动</div>
+                          )}
+                        </CardContent>
+                      </Card>
+                    </TabsContent>
+                  </Tabs>
+              )}
+            </>
+        ) : (
+            <div className="text-center py-12 border rounded-lg">
+              <h3 className="text-lg font-medium">暂无可签到的活动</h3>
+              <p className="text-muted-foreground mt-1">当有新的活动时会显示在这里</p>
+            </div>
+        )}
+      </div>
   )
 }

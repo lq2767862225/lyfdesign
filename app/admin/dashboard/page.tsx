@@ -376,7 +376,7 @@ export default function AdminDashboardPage() {
             <Badge>1</Badge>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">1个</div>
+            <div className="text-2xl font-bold">20个</div>
             <p className="text-xs text-muted-foreground">
               较上周 <span className="text-green-500">-2</span>
             </p>
@@ -388,7 +388,7 @@ export default function AdminDashboardPage() {
             <Badge>0</Badge>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">0个</div>
+            <div className="text-2xl font-bold">13个</div>
             <p className="text-xs text-muted-foreground">
               较上周 <span className="text-green-500">-3</span>
             </p>
@@ -400,7 +400,7 @@ export default function AdminDashboardPage() {
             <Badge variant="destructive">2</Badge>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">2个</div>
+            <div className="text-2xl font-bold">5个</div>
             <p className="text-xs text-muted-foreground">
               较上周 <span className="text-red-500">+1</span>
             </p>
@@ -411,7 +411,7 @@ export default function AdminDashboardPage() {
             <CardTitle className="text-sm font-medium">总志愿者</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">158人</div>
+            <div className="text-2xl font-bold">76人</div>
             <p className="text-xs text-muted-foreground">
               较上月 <span className="text-green-500">+24</span>
             </p>
@@ -441,7 +441,7 @@ export default function AdminDashboardPage() {
 
           <Tabs defaultValue="pending" className="mt-2">
             <TabsList>
-              <TabsTrigger value="pending">待处理 ({pendingTasks.length})</TabsTrigger>
+              <TabsTrigger value="pending">待处理 (3{pendingTasks.length})</TabsTrigger>
               <TabsTrigger value="completed">已完成 ({completedTasks.length})</TabsTrigger>
             </TabsList>
 

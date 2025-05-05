@@ -140,10 +140,10 @@ export default function ManagerDashboardPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">我负责的活动</CardTitle>
-            <Badge>2</Badge>
+            <Badge>9</Badge>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">2个</div>
+            <div className="text-2xl font-bold">9个</div>
             <p className="text-xs text-muted-foreground">
               较上周 <span className="text-green-500">+1</span>
             </p>
@@ -155,7 +155,7 @@ export default function ManagerDashboardPage() {
             <Badge>1</Badge>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">1个</div>
+            <div className="text-2xl font-bold">5个</div>
             <p className="text-xs text-muted-foreground">
               较上周 <span className="text-red-500">+1</span>
             </p>
@@ -166,7 +166,7 @@ export default function ManagerDashboardPage() {
             <CardTitle className="text-sm font-medium">参与志愿者</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">3人</div>
+            <div className="text-2xl font-bold">13人</div>
             <p className="text-xs text-muted-foreground">
               较上周 <span className="text-green-500">+2</span>
             </p>
@@ -177,7 +177,7 @@ export default function ManagerDashboardPage() {
             <CardTitle className="text-sm font-medium">总服务时长</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">7小时</div>
+            <div className="text-2xl font-bold">12小时</div>
             <p className="text-xs text-muted-foreground">
               较上周 <span className="text-green-500">+3</span>
             </p>

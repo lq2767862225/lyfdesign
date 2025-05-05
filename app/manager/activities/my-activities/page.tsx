@@ -233,6 +233,13 @@ export default function MyActivitiesPage() {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-bold tracking-tight">我的活动</h1>
+          <div className="flex items-center gap-4 flex-1 max-w-md ml-6 mr-4">
+                       <Input
+                         placeholder="根据活动名或者活动类型进行搜索"
+                         className="w-full"
+                       />
+                     </div>
+          <Button type="button" variant="outline">搜索</Button>
           <Link href="/manager/activities/create">
             <Button>申报新活动</Button>
           </Link>
