@@ -1,335 +1,186 @@
 // lib/api.ts
+import axios from "axios";
 
-import { mockUsers, mockActivities, mockAnnouncements, mockChats, mockTasks, mockReports } from "./mock"
+const api = axios.create({
+  baseURL: "http://127.0.0.1/api"
+});
 
-// 用户相关API
 export async function login(username: string, password: string) {
-  // 模拟登录验证
-  const user = mockUsers.find((user) => user.username === username && user.password === password)
-
-  if (user) {
-    // 模拟存储用户会话
-    localStorage.setItem(
-      "currentUser",
-      JSON.stringify(user),
-    )
-    return user
-  }
-
-  return null
+  const res = await api.post("/auth/login", { email: username, password });
+  const user = res.data;
+  localStorage.setItem("currentUser", JSON.stringify(user));
+  return user;
 }
 
 export async function getCurrentUser() {
-  // 从本地存储获取当前用户
-  const userStr = localStorage.getItem("currentUser")
-  if (!userStr) return null
+  const userStr = localStorage.getItem("currentUser");
+  if (!userStr) return null;
+  return JSON.parse(userStr);
+}
 
-  return JSON.parse(userStr)
+export async function updateUserPassword(userId: string, newPassword: string) {
+  const res = await api.put(`/auth/${userId}/password`, { newPassword });
+  return res.status === 200;
+}
+
+export async function updateUserProfile(userId: string, profileData: any) {
+  const res = await api.put(`/users/${userId}`, profileData);
+  return res.data;
 }
 
 export async function logout() {
   localStorage.removeItem("currentUser")
 }
 
-export async function updateUserPassword(userId: string, newPassword: string) {
-  // 模拟更新密码
-  const userIndex = mockUsers.findIndex((user) => user.id === userId)
-  if (userIndex !== -1) {
-    mockUsers[userIndex].password = newPassword
-    mockUsers[userIndex].firstLogin = false
-    return true
-  }
-  return false
-}
-
-export async function updateUserProfile(userId: string, profileData: any) {
-  // 模拟更新用户资料
-  const userIndex = mockUsers.findIndex((user) => user.id === userId)
-  if (userIndex !== -1) {
-    mockUsers[userIndex] = { ...mockUsers[userIndex], ...profileData }
-    return mockUsers[userIndex]
-  }
-  return null
-}
-
-// 活动相关API
-export async function getActivities(filters = {}) {
-  // 模拟获取活动列表，可以根据filters过滤
-  return mockActivities
-}
-
-export async function getActivityById(id: string) {
-  return mockActivities.find((activity) => activity.id === id) || null
+export async function getActivities() {
+  const res = await api.get("/activities");
+  return res.data;
 }
 
 export async function createActivity(activityData: any) {
-  // 模拟创建新活动
-  const newActivity = {
-    id: `act-${Date.now()}`,
-    createdAt: new Date().toISOString(),
-    status: "pending",
-    participants: [],
-    ...activityData,
-  }
-
-  mockActivities.push(newActivity)
-
-  // 自动创建群聊
-  createChat({
-    id: `chat-${newActivity.id}`,
-    type: "group",
-    name: `${newActivity.title}活动群`,
-    participants: [newActivity.managerId],
-    messages: [],
-  })
-
-  return newActivity
-}
-
-export async function updateActivity(id: string, activityData: any) {
-  const activityIndex = mockActivities.findIndex((activity) => activity.id === id)
-  if (activityIndex !== -1) {
-    mockActivities[activityIndex] = { ...mockActivities[activityIndex], ...activityData }
-    return mockActivities[activityIndex]
-  }
-  return null
-}
-
-export async function deleteActivity(id: string) {
-  const activityIndex = mockActivities.findIndex((activity) => activity.id === id)
-  if (activityIndex !== -1) {
-    mockActivities.splice(activityIndex, 1)
-    return true
-  }
-  return false
+  const res = await api.post("/activities", activityData);
+  return res.data;
 }
 
 export async function joinActivity(activityId: string, userId: string) {
-  const activity = mockActivities.find((activity) => activity.id === activityId)
-  const user = mockUsers.find((user) => user.id === userId)
-
-  if (!activity || !user) return { success: false, message: "活动或用户不存在" }
-  if (user.creditScore <= 0) return { success: false, message: "信誉分不足，无法报名" }
-  if (activity.participants.includes(userId)) return { success: false, message: "您已报名此活动" }
-
-  // 检查活动是否已满
-  if (activity.participants.length >= activity.maxParticipants) {
-    return { success: false, message: "活动名额已满" }
-  }
-
-  // 添加用户到活动参与者
-  activity.participants.push(userId)
-
-  // 将用户添加到活动群聊
-  const chat = mockChats.find((chat) => chat.id === `chat-${activity.id}`)
-  if (chat && !chat.participants.includes(userId)) {
-    chat.participants.push(userId)
-  }
-
-  return { success: true, message: "报名成功" }
+  const res = await api.post(`/activities/${activityId}/join`, { userId });
+  return res.data;
 }
 
-export async function approveActivityMaterials(activityId: string) {
-  const activityIndex = mockActivities.findIndex((activity) => activity.id === activityId)
-  if (activityIndex !== -1 && mockActivities[activityIndex].materials) {
-    mockActivities[activityIndex].materials = {
-      ...mockActivities[activityIndex].materials,
-      approved: true,
-      rejected: false,
-      approvedAt: new Date().toISOString(),
-      approvedBy: "系统管理员",
-    }
-    return true
-  }
-  return false
+// 获取活动详情
+export async function getActivityById(id: string) {
+  const res = await api.get(`/activities/${id}`);
+  return res.data;
 }
 
-export async function rejectActivityMaterials(activityId: string, reason: string) {
-  const activityIndex = mockActivities.findIndex((activity) => activity.id === activityId)
-  if (activityIndex !== -1 && mockActivities[activityIndex].materials) {
-    mockActivities[activityIndex].materials = {
-      ...mockActivities[activityIndex].materials,
-      approved: false,
-      rejected: true,
-      rejectedAt: new Date().toISOString(),
-      rejectedBy: "系统管理员",
-      rejectionReason: reason,
-    }
-    return true
-  }
-  return false
+// 更新活动
+export async function updateActivity(id: string, activityData: any) {
+  const res = await api.put(`/activities/${id}`, activityData);
+  return res.data;
 }
 
-// 公告相关API
+// 删除活动
+export async function deleteActivity(id: string) {
+  const res = await api.delete(`/activities/${id}`);
+  return res.status === 200;
+}
+
+// 审核通过材料
+export async function approveActivityMaterials(materialId: string) {
+  const res = await api.patch(`/activities/approve/${materialId}`, {
+    approvedBy: "系统管理员",
+    approvedAt: new Date().toISOString(),
+  });
+  return res.status === 200;
+}
+
+// 驳回材料
+export async function rejectActivityMaterials(materialId: string, reason: string) {
+  const res = await api.patch(`/activities/reject/${materialId}`, {
+    rejectedBy: "系统管理员",
+    rejectedAt: new Date().toISOString(),
+    rejectionReason: reason,
+  });
+  return res.status === 200;
+}
+
+// 获取公告列表
 export async function getAnnouncements() {
-  return mockAnnouncements
+  const res = await api.get("/announcements");
+  return res.data; // 假设后端返回 { data: [...] }
 }
 
+// 创建公告
 export async function createAnnouncement(announcementData: any) {
-  const newAnnouncement = {
-    id: `ann-${Date.now()}`,
-    createdAt: new Date().toISOString(),
-    ...announcementData,
-  }
-
-  mockAnnouncements.push(newAnnouncement)
-  return newAnnouncement
+  const res = await api.post("/announcements", announcementData);
+  return res.data; // 返回创建的公告
 }
 
+// 更新公告
 export async function updateAnnouncement(id: string, announcementData: any) {
-  const announcementIndex = mockAnnouncements.findIndex((announcement) => announcement.id === id)
-  if (announcementIndex !== -1) {
-    mockAnnouncements[announcementIndex] = { ...mockAnnouncements[announcementIndex], ...announcementData }
-    return mockAnnouncements[announcementIndex]
-  }
-  return null
+  const res = await api.put(`/announcements/${id}`, announcementData);
+  return res.data; // 返回更新后的公告
 }
 
+// 删除公告
 export async function deleteAnnouncement(id: string) {
-  const announcementIndex = mockAnnouncements.findIndex((announcement) => announcement.id === id)
-  if (announcementIndex !== -1) {
-    mockAnnouncements.splice(announcementIndex, 1)
-    return true
-  }
-  return false
+  const res = await api.delete(`/announcements/${id}`);
+  return res.status === 200;
 }
 
-// 聊天相关API
+// 获取用户参与的所有聊天
 export async function getChats(userId: string) {
-  // 获取用户参与的所有聊天
-  return mockChats.filter((chat) => chat.participants.includes(userId))
+  const res = await api.get("/chats", { params: { userId } });
+  return res.data;
 }
 
+// 获取单个聊天详情
 export async function getChatById(chatId: string) {
-  return mockChats.find((chat) => chat.id === chatId) || null
+  const res = await api.get(`/chats/${chatId}`);
+  return res.data;
 }
 
+// 创建新聊天
 export async function createChat(chatData: any) {
-  const newChat = {
-    id: chatData.id || `chat-${Date.now()}`,
-    createdAt: new Date().toISOString(),
-    messages: [],
-    ...chatData,
-  }
-
-  mockChats.push(newChat)
-  return newChat
+  const res = await api.post("/chats", chatData);
+  return res.data;
 }
 
+// 发送新消息
 export async function sendMessage(chatId: string, message: any) {
-  const chat = mockChats.find((chat) => chat.id === chatId)
-  if (!chat) return null
-
-  const newMessage = {
-    id: `msg-${Date.now()}`,
-    timestamp: new Date().toISOString(),
-    ...message,
-  }
-
-  chat.messages.push(newMessage)
-  return newMessage
+  const res = await api.post(`/chats/${chatId}/messages`, message);
+  return res.data;
 }
 
-// 任务相关API
+// 获取任务（可选传入 userId 过滤）
 export async function getTasks(userId?: string) {
-  // 获取用户的待办任务
-  if (userId) {
-    return mockTasks.filter((task) => task.assigneeId === userId)
-  }
-  return mockTasks
+  const res = await api.get("/tasks", {
+    params: userId ? { assigneeId: userId } : {},
+  });
+  return res.data;
 }
 
+// 更新任务
 export async function updateTask(taskId: string, taskData: any) {
-  const taskIndex = mockTasks.findIndex((task) => task.id === taskId)
-  if (taskIndex !== -1) {
-    mockTasks[taskIndex] = { ...mockTasks[taskIndex], ...taskData }
-    return mockTasks[taskIndex]
-  }
-  return null
+  const res = await api.put(`/tasks/${taskId}`, taskData);
+  return res.data;
 }
 
-// 用户管理API
+// 获取用户列表（可选 role 筛选）
 export async function getUsers(role?: string) {
-  if (role === "all") {
-    return mockUsers
-  }
-  if (role) {
-    return mockUsers.filter((user) => user.role === role)
-  }
-  return mockUsers
+  const res = await api.get("/users", {
+    params: role && role !== "all" ? { role } : {},
+  });
+  return res.data;
 }
 
+// 更新用户角色
 export async function updateUserRole(userId: string, newRole: string) {
-  const userIndex = mockUsers.findIndex((user) => user.id === userId)
-  if (userIndex !== -1) {
-    mockUsers[userIndex].role = newRole
-    return mockUsers[userIndex]
-  }
-  return null
+  const res = await api.put(`/users/${userId}/role`, { role: newRole });
+  return res.data;
 }
 
-// 用户管理API
+// 更新用户信用分
 export async function updateUserCredit(userId: string, newCreditScore: number) {
-  const userIndex = mockUsers.findIndex((user) => user.id === userId)
-  if (userIndex !== -1) {
-    mockUsers[userIndex].creditScore = newCreditScore
-    return mockUsers[userIndex]
-  }
-  return null
+  const res = await api.put(`/users/${userId}/credit`, { creditScore: newCreditScore });
+  return res.data;
 }
 
 // 创建新用户
 export async function addUser(userData: any) {
-  // 实际应调用API创建用户
-  console.log("创建新用户:", userData)
-
-  // 模拟API返回，添加ID和其他默认字段
-  return {
-    id: `user_${Date.now()}`,
-    ...userData,
-    avatar: null,
-  }
+  const res = await api.post("/users", userData);
+  return res.data;
 }
 
-// 批量导入用户
+// 批量导入用户（上传文件）
 export async function bulkImportUsers(file: File) {
-  // 实际应调用API上传文件并处理导入
-  console.log("批量导入用户文件:", file.name)
+  const formData = new FormData();
+  formData.append("file", file);
 
-  // 模拟API返回
-  return {
-    total: 10,
-    success: 8,
-    failed: 2,
-    users: [
-      {
-        id: `import_1_${Date.now()}`,
-        name: "李四",
-        studentId: "20210002",
-        gender: "男",
-        class: "计算机2班",
-        department: "计算机科学与技术学院",
-        grade: "2021级",
-        email: "lisi@example.com",
-        phone: "13900139000",
-        creditScore: 100,
-        serviceHours: 0,
-        role: "volunteer",
-      },
-      {
-        id: `import_2_${Date.now()}`,
-        name: "王五",
-        studentId: "20210003",
-        gender: "女",
-        class: "计算机2班",
-        department: "计算机科学与技术学院",
-        grade: "2021级",
-        email: "wangwu@example.com",
-        phone: "13700137000",
-        creditScore: 100,
-        serviceHours: 0,
-        role: "volunteer",
-      },
-    ],
-  }
+  const res = await api.post("/users/import", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
 }
